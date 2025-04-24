@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projetos | Designer Criativo</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #6366f1;
+            --accent: #8b5cf6;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --blue-light: #eff6ff; 
+            --blue-medium: #3b82f6; 
+            --blue-dark: #1e40af;   
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        #navbar {
+            transition: all 0.3s ease;
+        }
+        
+        .shrink {
+            padding-top: 0.5rem !important;
+            padding-bottom: 0.5rem !important;
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--light);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loader-hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loader-icon {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #e2e8f0;
+            border-top-color: var(--accent);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1rem;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(70%);
+            transition: transform 0.4s ease;
+        }
+        
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+        
+        .tag {
+            display: inline-block;
+            background-color: rgba(99, 102, 241, 0.2);
+            color: var(--secondary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .filter-btn {
+            background-color: transparent;
+            color: var(--dark);
+            border: 1px solid var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+        
+        .filter-btn:hover {
+            background-color: var(--dark);
+            color: white;
+        }
+        
+        .filter-btn.active {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            color: white;
+        }
+        
+        .page-header {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--blue-light) 0%, #ffffff 100%);
+        }
+
+         .page-header::before, .page-header::after {
+             content: '';
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.1;
+             animation: pulse-bubble 15s infinite alternate ease-in-out;
+         }
+        .page-header::before { bottom: -40%; left: -20%; width: 80%; height: 80%; background-color: var(--blue-medium); }
+        .page-header::after { top: -40%; right: -20%; width: 70%; height: 70%; background-color: var(--accent); animation-delay: -5s; }
+
+
+        @keyframes pulse-bubble {
+            0% { transform: scale(1); opacity: 0.1; }
+            100% { transform: scale(1.1); opacity: 0.15; }
+        }
+
+        
+        .project-details {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            z-index: 999;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .project-details.active {
+            display: block;
+            opacity: 1;
+        }
+        
+        .gallery-image {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: transform 0.5s ease, opacity 0.5s ease;
+        }
+        
+        .gallery-image.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader">
+        <div class="loader-icon"></div>
+    </div>
+
+   
+    <nav id="navbar" class="fixed w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg py-4 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="../index.html" class="text-2xl font-bold text-indigo-600">
+                <span class="text-purple-600">Edilson</span> Mendes<span class="text-purple-600">.</span>
+            </a>
+            <div class="hidden md:flex space-x-8">
+                <a href="../index.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Início</a>
+                <a href="projetos.html" class="nav-link text-indigo-600 hover:text-indigo-600 font-medium">Projetos</a>
+                <a href="sobre.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
+                <a href="contato.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+            </div>
+            <div class="md:hidden">
+                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-4 px-6 shadow-lg">
+            <div class="flex flex-col space-y-4">
+                <a href="../index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Início</a>
+                <a href="projetos.html" class="text-indigo-600 hover:text-indigo-600 font-medium">Projetos</a>
+                <a href="sobre.html" class="text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
+                <a href="contato.html" class="text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="page-header py-32 md:py-40 relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="max-w-3xl mx-auto text-center">
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-900 animate-on-scroll">Meus Projetos</h1>
+                <p class="text-lg md:text-xl text-gray-700 mb-8 animate-on-scroll" style="transition-delay: 0.2s;">
+                    Uma seleção cuidadosa dos meus melhores trabalhos em design, branding e criação visual.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <section class="py-8 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="ui">UI/UX Design</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+                <button class="filter-btn" data-filter="illustration">Ilustração</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid">
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg" alt="App Fitness Pro" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Logo</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Logo Bella italia</h3>
+                        <p class="text-gray-200 mb-4">Design uma logo que fosse chamativa e atraente aos olhos do público</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project1">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject1.jpeg" alt="Website Café Aroma" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Anuncio</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Design de Imagem Motivacional</h3>
+                        <p class="text-gray-200 mb-4">Analise como o contraste e a hierarquia visual guiam o seu olhar nesta mensagem inspiradora!</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project2">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg" alt="Branding Eco Vida" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Anuncio</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Adeus Férias</h3>
+                        <p class="text-gray-200 mb-4">Sinta a energia tropical e a animação da festa 'Adeus Férias'</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project3">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject3.jpeg" alt="Ilustrações Livro Infantil" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Ilustração</span>
+                            <span class="tag">Anuncio</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">'Dia dos Namorados'</h3>
+                        <p class="text-gray-200 mb-4">Deixe-se envolver pela atmosfera romântica que emana deste design especial para o Dia dos Namorados!</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project4">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
+                    <img src="https://englishhub897785602.imgix.net/edilson/musicaAovivo.jpg" alt="Dashboard Financeiro" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Anuncio</span>
+                            <span class="tag">ilustração</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Anuncio de show musical</h3>
+                        <p class="text-gray-200 mb-4">Sinta a vibração do 'Sextou' através do design convidativo deste anúncio!</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project5">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Festivaldocaldo1.jpeg" alt="Cardapio" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Anuncio</span>
+                            <span class="tag">Cardapio</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Cardapio festival do caldo</h3>
+                        <p class="text-gray-200 mb-4">Descubra a arte por trás do convite ao Festival do Caldo!</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project6">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                <!-- 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
+                    <img src="/api/placeholder/800/600" alt="E-commerce Moda Sustentável" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Web</span>
+                            <span class="tag">E-commerce</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">titlee</h3>
+                        <p class="text-gray-200 mb-4">descrição</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project7">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                 Project 8 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
+                    <img src="/api/placeholder/800/600" alt="App de Meditação Zen" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">tag</span>
+                            <span class="tag">tag</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">title</h3>
+                        <p class="text-gray-200 mb-4">Descrição</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project8">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                  Project 9 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
+                    <img src="/api/placeholder/800/600" alt="Ilustrações para Blog" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">tag</span>
+                            <span class="tag">tag</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Ititle</h3>
+                        <p class="text-gray-200 mb-4">Descrição</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project9">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                 Project 10 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
+                    <img src="/api/placeholder/800/600" alt="Identidade Visual Festival" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Evento</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Identidade Visual Festival</h3>
+                        <p class="text-gray-200 mb-4">Design completo para festival de música independente, incluindo materiais promocionais.</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project10">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                 Project 11 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
+                    <img src="/api/placeholder/800/600" alt="Landing Page SaaS" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Web</span>
+                            <span class="tag">Landing Page</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Landing Page SaaS</h3>
+                        <p class="text-gray-200 mb-4">Design de landing page de alta conversão para empresa de software como serviço.</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project11">Ver detalhes →</button>
+                    </div>
+                </div>
+                
+                 Project 12 
+                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
+                    <img src="/api/placeholder/800/600" alt="Série de Posters" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <div class="project-overlay">
+                        <div class="flex gap-2 mb-3">
+                            <span class="tag">Ilustração</span>
+                            <span class="tag">Poster</span>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2">Série de Posters</h3>
+                        <p class="text-gray-200 mb-4">Coleção de posters artísticos para exposição sobre cultura urbana contemporânea.</p>
+                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project12">Ver detalhes →</button>
+                    </div>
+                </div>
+                  -->
+            </div>
+        </div>
+    </section>
+
+    <div id="project-details" class="project-details">
+        <div class="container mx-auto px-6 py-12">
+            <div class="flex justify-end mb-8">
+                <button id="close-details" class="text-white hover:text-indigo-300 transition">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <div id="project-content" class="text-white">
+                <!-- Content will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <section class="py-20 bg-indigo-600 text-white">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Tem um projeto em mente?</h2>
+            <p class="max-w-lg mx-auto mb-8">
+                Estou disponível para novos desafios e colaborações. Vamos conversar sobre como posso ajudar a transformar sua visão em realidade.
+            </p>
+            <a href="./contato.html" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-block">
+                Vamos Trabalhar Juntos
+            </a>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-8 md:mb-0">
+                    <h3 class="text-2xl font-bold mb-4 text-blue-400"> 
+                        <span class="text-blue-500">Edilson</span> Mendes<span class="text-blue-500">.</span>
+                    </h3>
+                    <p class="text-gray-400 max-w-md">
+                        Criando experiências visuais memoráveis e funcionais desde 2015.
+                    </p>
+                </div>
+                
+                <div class="flex space-x-6">
+                    <a href="https://www.instagram.com/edilsonmendessantos/" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-behance text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-dribbble text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white transition">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <hr class="border-gray-800 my-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-500 text-sm mb-4 md:mb-0">
+                    &copy; 2025 Edilson Mendes Todos os direitos reservados.
+                </p>
+                
+                <div class="flex space-x-6 text-sm text-gray-500">
+                    <a href="https://www.instagram.com/edrioborges/" class="hover:text-gray-300 transition">Site Feito com ❤ por Edrio Borges</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+    
+    window.addEventListener('load', () => {
+        const loader = document.querySelector('.loader');
+        setTimeout(() => {
+            loader.classList.add('loader-hidden');
+        }, 500);
+        
+        // Start animations after page loads
+        initAnimations();
+    });
+    
+    document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+    
+    window.addEventListener('scroll', () => {
+        const navbar = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+            navbar.classList.add('shrink');
+        } else {
+            navbar.classList.remove('shrink');
+        }
+    });
+    
+    
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            
+            button.classList.add('active');
+            
+            const filterValue = button.getAttribute('data-filter');
+            
+            if (filterValue === 'all') {
+                gsap.to(projectItems, {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.4,
+                    stagger: 0.05,
+                    ease: "power2.out",
+                    display: 'block'
+                });
+            } else {
+                projectItems.forEach(item => {
+                    if (item.getAttribute('data-category') === filterValue) {
+                        gsap.to(item, {
+                            opacity: 1,
+                            scale: 1,
+                            duration: 0.4,
+                            ease: "power2.out",
+                            display: 'block'
+                        });
+                    } else {
+                        gsap.to(item, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.4,
+                            ease: "power2.out",
+                            display: 'none'
+                        });
+                    }
+                });
+            }
+        });
+    });
+    
+    const projectDetailsModal = document.getElementById('project-details');
+    const projectContent = document.getElementById('project-content');
+    const closeDetailsButton = document.getElementById('close-details');
+    const viewProjectButtons = document.querySelectorAll('.view-project');
+    
+    const projectData = {
+        project1: {
+            title: "Bella iatlia Logo",
+            client: "bella italia",
+            year: "2022",
+            description: "Criação de uma logo que fosse chamativa e atraente aos olhos do público",
+            challenge: "Um dos maiores desafios foi criar uma interface ficar simples, magnifica e aos mesmo tempo atraente para os clientes, mantendo um equilíbrio entre funcionalidade e simplicidade.",
+            solution: "Desemvolvi essa logo, baseando me nessa solução simples de chapéu de cozinheiro ",
+            images: ["https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg"]
+        },
+        project2: {
+            title: "Marketing com Foco no Design da Imagem Motivacional",
+            client: "",
+            year: "2022",
+            description: "Analise como o contraste e a hierarquia visual guiam o seu olhar nesta mensagem inspiradora! O texto em amarelo vibrante sobre o fundo escuro garante que a importância da disciplina como elo entre objetivos e realizações seja imediatamente percebida.",
+            challenge: "O desafio de design foi criar uma peça visualmente atraente que, ao mesmo tempo, garantisse que a mensagem principal fosse clara, concisa e impactante, utilizando o contraste para destacar as palavras-chave",
+            solution: "O fundo escuro e desfocado direciona a atenção para o centro da imagem, onde a frase motivacional em amarelo ganha destaque. O uso de aspas estilizadas no início da frase adiciona um elemento visual interessante. A combinação de uma fonte mais geométrica para a frase principal e uma fonte mais clara para a atribuição (implícita na ausência de logo) contribui para a hierarquia da informação",
+            images: ["https://englishhub897785602.imgix.net/edilson/imgProject1.jpeg"]
+        },
+        project3: {
+            title: "Adeus Férias",
+            client: "Bella italia",
+            year: "2023",
+            description: "Sinta a energia tropical e a animação da festa 'Adeus Férias' através deste design vibrante! As cores vivas, as palmeiras e os coquetéis gelados transportam você para um clima de celebração à beira-mar, mesmo sendo na Bella Itália",
+            challenge: "O desafio de design foi criar uma peça visual que comunicasse a atmosfera de despedida das férias com um toque tropical e festivo, integrando as informações do evento (atração, data, hora, promoção) de forma atraente e convidativa. ",
+            solution: "O design utiliza uma paleta de cores alegres e vibrantes, com tons de azul do céu e do mar, verde das palmeiras e rosa da areia. As ilustrações de palmeiras reforçam a temática tropical, enquanto as caipirinhas em destaque sugerem a descontração do evento. A tipografia moderna e em negrito para o nome do artista e o título da festa garantem o impacto visual.",
+            images: ["https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg"]
+        },
+        project4: {
+            title: "Dia dos Namorados",
+            client: "Prime",
+            year: "2023",
+            description: "Deixe-se envolver pela atmosfera romântica que emana deste design especial para o Dia dos Namorados! Cada elemento visual, desde as rosas vermelhas até a elegante garrafa de vinho, foi cuidadosamente selecionado para evocar o amor e a celebração.",
+            challenge: "O desafio de design foi criar uma peça visual que transmitisse a essência do Dia dos Namorados – romance, intimidade e celebração a dois – de forma atraente e convidativa, destacando a oferta do evento.",
+            solution: "O design utiliza uma paleta de cores predominantemente vermelha e tons escuros, clássicos do romance e da elegância. As rosas vermelhas em destaque simbolizam a paixão, enquanto a garrafa de vinho sugere um momento especial a ser compartilhado. A tipografia cursiva para 'Dia dos Namorados' adiciona um toque delicado e festivo. A disposição dos elementos guia o olhar para a oferta do evento de forma clara e organizada",
+            images: ["https://englishhub897785602.imgix.net/edilson/imgProject3.jpeg"]
+        },
+        project5: {
+            title: "Anuncio de Show",
+            client: "Bella italia",
+            year: "2024",
+            description: "Sinta a vibração do 'Sextou' através do design convidativo deste anúncio! A combinação da rusticidade da madeira com a energia das luzes e a tipografia marcante capturam a atmosfera acolhedora e animada que espera por você no show de sertanejo com Eric na Bella Itália.",
+            challenge: "O desafio de design foi criar uma peça visual que comunicasse tanto o ambiente acolhedor da pizzaria quanto a animação de um show de sertanejo, tudo em um formato atraente e que despertasse o desejo de participar",
+            solution: "O design utilizou um fundo texturizado que remete à madeira, evocando a sensação de um ambiente rústico e convidativo. As lâmpadas incandescentes no topo adicionam um toque de calor e intimismo, enquanto a tipografia cursiva para 'Sextou' e a fonte moderna para o nome do artista criam um contraste dinâmico. A disposição dos elementos guia o olhar para as informações essenciais de forma clara e organizada.",
+            images: ["https://englishhub897785602.imgix.net/edilson/musicaAovivo.jpg"]
+        },
+        project6: {
+            title: "Cardapio para o festival do caldo",
+            client: "Prime",
+            year: "2024",
+            description: "Descubra a arte por trás do convite ao Festival do Caldo! Um design vibrante e convidativo que captura a essência acolhedora e saborosa do evento. Cada elemento visual foi cuidadosamente pensado para despertar o seu desejo de participar.",
+            challenge: "O desafio era criar uma peça de comunicação visual que não apenas anunciasse o festival, mas que também transmitisse a atmosfera festiva e o calor dos caldos de forma impactante e memorável, diferenciando-se de anúncios convencionais",
+            solution: "Desenvolvi um design que utiliza uma paleta de cores quentes e convidativas, tipografia expressiva que remete ao aconchego, e elementos gráficos como estrelas e bandeirolas que evocam celebração. A composição dinâmica e o destaque do prato de caldo apetitoso trabalham juntos para criar um convite visualmente atraente e eficaz",
+            images: ["https://englishhub897785602.imgix.net/edilson/Festivaldocaldo1.jpeg", "https://englishhub897785602.imgix.net/edilson/Festivaldocaldo2.jpeg", "https://englishhub897785602.imgix.net/edilson/Festivaldocaldo3.jpeg"]
+        },
+        project7: {
+            title: "E-commerce Moda Sustentável",
+            client: "Ecotrend Fashion",
+            year: "2025",
+            description: "Design de plataforma e-commerce completa para uma marca de moda sustentável em ascensão, com foco em transparência sobre materiais e processos de produção.",
+            challenge: "O desafio era criar uma experiência de compra online que educasse os consumidores sobre moda sustentável sem comprometer a fluidez do processo de compra, equilibrando informação e conversão.",
+            solution: "Desenvolvi uma interface limpa com foco nas peças, mas com um sistema de badges e informações contextuais sobre sustentabilidade que aparece em momentos estratégicos da jornada do usuário. Implementei também uma timeline interativa que mostra o processo de produção de cada peça, desde a matéria-prima até a entrega.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        },
+        project8: {
+            title: "App de Meditação Zen",
+            client: "MindfulTech",
+            year: "2024",
+            description: "Interface para aplicativo de meditação e bem-estar mental, com foco em simplicidade e tranquilidade visual para complementar a experiência de mindfulness dos usuários.",
+            challenge: "O desafio era criar uma interface que fosse funcional e intuitiva, mas que ao mesmo tempo induzisse estados de calma e tranquilidade através de escolhas visuais deliberadas, evitando elementos de UI que poderiam ser estimulantes ou distrativos.",
+            solution: "Desenvolvi um design com microinterações suaves e transições fluidas, utilizando uma paleta de cores baseada em pesquisas sobre cromotipia e estados mentais. O app utiliza um sistema de navegação baseado em gestos naturais e minimalistas, reduzindo a necessidade de elementos de UI tradicionais.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        },
+        project9: {
+            title: "Ilustrações para Blog",
+            client: "TechFuture Blog",
+            year: "2025",
+            description: "Série de ilustrações conceituais para um blog de tecnologia e inovação, com o objetivo de tornar temas técnicos mais acessíveis e visualmente interessantes para um público amplo.",
+            challenge: "O desafio estava em criar ilustrações que complementassem conteúdos tecnicamente complexos, tornando-os mais acessíveis sem simplificá-los demais ou recorrer a clichês visuais do setor de tecnologia.",
+            solution: "Desenvolvi um estilo de ilustração conceitual que combina elementos abstratos com metáforas visuais concretas. As ilustrações utilizam uma paleta de cores consistente que se alinha com a identidade visual do blog, mas com variações suficientes para distinguir diferentes categorias de conteúdo.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        },
+        project10: {
+            title: "Identidade Visual Festival",
+            client: "Festival Sonora",
+            year: "2024",
+            description: "Design completo para festival de música independente, incluindo logo, sistema visual, sinalização, material promocional e presença digital nas redes sociais.",
+            challenge: "O desafio era criar uma identidade visual que fosse versátil o suficiente para funcionar em diversos formatos e contextos, mantendo a coerência entre o ambiente físico do festival e sua presença digital.",
+            solution: "Desenvolvi um sistema de identidade visual baseado em ondas sonoras estilizadas, com uma paleta de cores vibrantes que se transforma em diferentes contextos. O sistema inclui variações programáticas do logo e um conjunto de padrões que podem ser aplicados em diferentes escalas e suportes.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        },
+        project11: {
+            title: "Landing Page SaaS",
+            client: "CloudTask",
+            year: "2025",
+            description: "Design de landing page de alta conversão para uma empresa de software como serviço especializada em gestão de projetos para times remotos.",
+            challenge: "O desafio era criar uma página que comunicasse de forma clara e convincente os benefícios de um produto digital complexo, mantendo um equilíbrio entre informação técnica e apelo emocional para diferentes perfis de usuários potenciais.",
+            solution: "Desenvolvi uma estrutura de página baseada em storytelling visual, com seções que revelam gradualmente as funcionalidades do produto conforme o usuário rola a página. Utilizei animações sutis para demonstrar o produto em uso e depoimentos de clientes estrategicamente posicionados para reforçar pontos-chave.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        },
+        project12: {
+            title: "Série de Posters",
+            client: "Galeria Urbana",
+            year: "2024",
+            description: "Coleção de posters artísticos para exposição sobre cultura urbana contemporânea, explorando temas como identidade, tecnologia e transformação social em ambientes urbanos.",
+            challenge: "O desafio era criar peças que funcionassem individualmente, mas que também formassem um conjunto coeso quando expostas juntas, explorando diferentes aspectos da cultura urbana contemporânea com uma linguagem visual unificada.",
+            solution: "Desenvolvi uma série de composições que utilizam fotografia, tipografia experimental e elementos gráficos sobrepostos. Cada poster explora um tema específico da cultura urbana, mas todos compartilham técnicas visuais e uma paleta de cores limitada que cria coesão entre as peças.",
+            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+        }
+    };
+    
+    viewProjectButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const projectId = button.getAttribute('data-project');
+            const project = projectData[projectId];
+            
+            if (project) {
+                let content = `
+                    <div class="max-w-4xl mx-auto">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-2">${project.title}</h2>
+                        
+                        <div class="flex flex-wrap gap-4 mb-6">
+                            <div class="flex items-center">
+                                <i class="fas fa-user mr-2 text-indigo-300"></i>
+                                <span>${project.client}</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-calendar mr-2 text-indigo-300"></i>
+                                <span>${project.year}</span>
+                            </div>
+                        </div>
+                        
+                        <div class="mb-12">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                                <div>
+                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Sobre o Projeto</h3>
+                                    <p class="mb-6">${project.description}</p>
+                                    
+                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Desafio</h3>
+                                    <p class="mb-6">${project.challenge}</p>
+                                    
+                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Solução</h3>
+                                    <p>${project.solution}</p>
+                                </div>
+                                
+                                <div>
+                                    <div class="rounded-lg overflow-hidden mb-6">
+                                        <img src="${project.images[0]}" alt="${project.title}" class="w-full">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-2xl font-semibold mb-6 text-center">Galeria do Projeto</h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            ${project.images.map(image => `
+                                <div class="rounded-lg overflow-hidden gallery-image">
+                                    <img src="${image}" alt="${project.title}" class="w-full">
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                
+                projectContent.innerHTML = content;
+                projectDetailsModal.classList.add('active');
+                
+                gsap.fromTo(projectContent, {
+                    opacity: 0,
+                    y: 50
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    ease: "power2.out"
+                });
+                
+                gsap.utils.toArray('.gallery-image').forEach((image, i) => {
+                    gsap.fromTo(image, {
+                        opacity: 0,
+                        y: 30
+                    }, {
+                        opacity: 1,
+                        y: 0,
+                        duration: 0.6,
+                        delay: 0.3 + (i * 0.1),
+                        ease: "power2.out"
+                    });
+                });
+                
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+    
+    closeDetailsButton.addEventListener('click', () => {
+        gsap.to(projectContent, {
+            opacity: 0,
+            y: 30,
+            duration: 0.4,
+            ease: "power2.in",
+            onComplete: () => {
+                projectDetailsModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+    
+    function initAnimations() {
+        gsap.from('.page-header h1', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            ease: "power2.out"
+        });
+        
+        gsap.from('.page-header p', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            delay: 0.2,
+            ease: "power2.out"
+        });
+        
+    
+        gsap.from('.filter-btn', {
+            opacity: 0,
+            y: 20,
+            duration: 0.6,
+            stagger: 0.1,
+            delay: 0.5,
+            ease: "power2.out"
+        });
+        
+        gsap.utils.toArray('.project-card').forEach((card, i) => {
+            gsap.fromTo(card, 
+                {
+                    opacity: 0,
+                    y: 50
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    delay: 0.1 * i,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top bottom-=100",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+        
+        gsap.from('.py-20.bg-indigo-600 h2', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            scrollTrigger: {
+                trigger: '.py-20.bg-indigo-600',
+                start: "top bottom-=100",
+                toggleActions: "play none none none"
+            }
+        });
+        
+        gsap.from('.py-20.bg-indigo-600 p', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            delay: 0.2,
+            scrollTrigger: {
+                trigger: '.py-20.bg-indigo-600',
+                start: "top bottom-=100",
+                toggleActions: "play none none none"
+            }
+        });
+        
+        gsap.from('.py-20.bg-indigo-600 a', {
+            opacity: 0,
+            y: 30,
+            duration: 0.8,
+            delay: 0.4,
+            scrollTrigger: {
+                trigger: '.py-20.bg-indigo-600',
+                start: "top bottom-=100",
+                toggleActions: "play none none none"
+            }
+        });
+        
+        const galleryImages = document.querySelectorAll('.gallery-image');
+        galleryImages.forEach(image => {
+            gsap.fromTo(image, 
+                { 
+                    opacity: 0,
+                    scale: 0.9
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    duration: 0.8,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: image,
+                        start: "top bottom-=100",
+                        toggleActions: "play none none none"
+                    }
+                }
+            );
+        });
+    }
+</script>
+</body>
+</html>
