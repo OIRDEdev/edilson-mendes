@@ -210,6 +210,82 @@
             opacity: 1;
             transform: scale(1);
         }
+        
+        /* Video Marketing Section Styles */
+        .video-story-container {
+            position: relative;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .video-story-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+        }
+        
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .video-story-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .video-controls-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 1rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .video-story-container:hover .video-controls-overlay {
+            transform: translateY(0);
+        }
+        
+        .story-avatar {
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+        }
+        
+        .story-interaction {
+            transition: all 0.2s ease;
+        }
+        
+        .story-interaction:hover {
+            transform: scale(1.1);
+        }
+        
+        .video-tag {
+            display: inline-block;
+            background: rgba(99, 102, 241, 0.2);
+            color: #6366f1;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .video-tag:hover {
+            background: rgba(99, 102, 241, 0.3);
+            transform: translateY(-1px);
+        }
     </style>
 </head>
 <body>
@@ -363,49 +439,45 @@
                         <button class="text-indigo-300 hover:text-white transition view-project" data-project="project7">Ver detalhes →</button>
                     </div>
                 </div>
-                <!--
-                 Project 8 
                 <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
-                    <img src="/api/placeholder/800/600" alt="App de Meditação Zen" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-0.jpg"  class="w-full h-72 object-cover gallery-image" loading="lazy">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
-                            <span class="tag">tag</span>
-                            <span class="tag">tag</span>
+                            <span class="tag">Prime Conveniência</span>
+                            <span class="tag">show</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">title</h3>
-                        <p class="text-gray-200 mb-4">Descrição</p>
+                        <h3 class="text-xl font-bold mb-2">Show Rodrigo prime jn</h3>
+                        <p class="text-gray-200 mb-4">Anuncio Show Prime Conveniência</p>
                         <button class="text-indigo-300 hover:text-white transition view-project" data-project="project8">Ver detalhes →</button>
                     </div>
                 </div>
-                
-                  Project 9 
                 <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
-                    <img src="/api/placeholder/800/600" alt="Ilustrações para Blog" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-1.jpg"  class="w-full h-72 object-cover gallery-image" loading="lazy">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
-                            <span class="tag">tag</span>
-                            <span class="tag">tag</span>
+                            <span class="tag">Prime Conveniência</span>
+                            <span class="tag">Show</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Ititle</h3>
-                        <p class="text-gray-200 mb-4">Descrição</p>
+                        <h3 class="text-xl font-bold mb-2">>Dia dos Pais na Prime Jn</h3>
+                        <p class="text-gray-200 mb-4">Anuncia para os dias dos pais da Prime Jn</p>
                         <button class="text-indigo-300 hover:text-white transition view-project" data-project="project9">Ver detalhes →</button>
                     </div>
                 </div>
-                
-                 Project 10 
+            <!--
                 <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
-                    <img src="/api/placeholder/800/600" alt="Identidade Visual Festival" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-2.jpg" alt="Identidade Visual Festival" class="w-full h-72 object-cover gallery-image" loading="lazy">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
-                            <span class="tag">Branding</span>
-                            <span class="tag">Evento</span>
+                            <span class="tag">Prime Conveniência</span>
+                            <span class="tag">Show</span>
                         </div>
-                        <h3 class="text-xl font-bold mb-2">Identidade Visual Festival</h3>
-                        <p class="text-gray-200 mb-4">Design completo para festival de música independente, incluindo materiais promocionais.</p>
+                        <h3 class="text-xl font-bold mb-2">Show com Sara Benaia</h3>
+                        <p class="text-gray-200 mb-4">Design De Anuncio de Show para o Jn</p>
                         <button class="text-indigo-300 hover:text-white transition view-project" data-project="project10">Ver detalhes →</button>
                     </div>
                 </div>
-                
+            
+            
                  Project 11 
                 <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
                     <img src="/api/placeholder/800/600" alt="Landing Page SaaS" class="w-full h-72 object-cover gallery-image" loading="lazy">
@@ -450,6 +522,46 @@
             </div>
         </div>
     </div>
+
+    <!-- Video Marketing Section -->
+    <section class="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <div class="max-w-4xl mx-auto text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll text-gray-800">
+                    Veja o Processo Criativo
+                </h2>
+                <div class="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded mx-auto mb-6 animate-on-scroll"></div>
+                <p class="text-lg text-gray-600 animate-on-scroll">
+                    Acompanhe um pouco do meu processo de criação e veja como transformo ideias em realidade
+                </p>
+            </div>
+            
+            <div class="relative max-w-xl mx-auto">
+                <div class="video-story-container bg-white p-4 animate-on-scroll">
+                    <div class="aspect-video bg-black rounded-xl overflow-hidden relative">
+                        <video 
+                            class="w-full h-full object-contain"
+                            controls
+                            preload="metadata"
+                        >
+                            <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759284192/saida_tg4ten.mov" type="video/mp4">
+                            <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759284192/saida_tg4ten.mov" type="video/quicktime">
+                            Seu navegador não suporta o elemento de vídeo.
+                        </video>
+                        
+                        <!-- Video overlay -->
+                        <div class="video-overlay"></div>
+                        
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Background decorative elements -->
+        <div class="absolute top-20 left-10 w-32 h-32 bg-indigo-200 rounded-full opacity-20 blur-2xl"></div>
+        <div class="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 rounded-full opacity-20 blur-2xl"></div>
+    </section>
 
     <section class="py-20 bg-indigo-600 text-white">
         <div class="container mx-auto px-6 text-center">
@@ -646,31 +758,31 @@
             images: ["https://englishhub897785602.imgix.net/edilson/Design%20Storie%20Prime%20JN%20dia%20dos%20namorados%20_page-0001.jpg"]
         },
         project8: {
-            title: "App de Meditação Zen",
-            client: "MindfulTech",
-            year: "2024",
-            description: "Interface para aplicativo de meditação e bem-estar mental, com foco em simplicidade e tranquilidade visual para complementar a experiência de mindfulness dos usuários.",
-            challenge: "O desafio era criar uma interface que fosse funcional e intuitiva, mas que ao mesmo tempo induzisse estados de calma e tranquilidade através de escolhas visuais deliberadas, evitando elementos de UI que poderiam ser estimulantes ou distrativos.",
-            solution: "Desenvolvi um design com microinterações suaves e transições fluidas, utilizando uma paleta de cores baseada em pesquisas sobre cromotipia e estados mentais. O app utiliza um sistema de navegação baseado em gestos naturais e minimalistas, reduzindo a necessidade de elementos de UI tradicionais.",
-            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+            title: "Design para Story de Show ao Vivo – Sextou",
+            client: "Prime Conveniência",
+            year: "2025",
+            description: "Este design de story foi desenvolvido para promover uma noite de show ao vivo com o cantor Rodrigo Auad. A peça traz um visual descontraído e acolhedor, destacando o artista com seu violão em primeiro plano, acompanhado de informações-chave sobre data, horário e atrações extras, como a promoção de caipirinha em dobro.",
+            challenge: "O desafio principal foi transmitir a energia vibrante de uma sexta-feira à noite, equilibrando a presença marcante do artista com os detalhes do evento em um formato vertical. Era necessário destacar a sensação de celebração e aconchego, sem comprometer a legibilidade.",
+            solution: "A solução adotou uma paleta quente, com elementos em madeira e lâmpadas de filamento que remetem a um ambiente de bar intimista. A hierarquia tipográfica organiza as informações em blocos claros: o título 'Sextou' em destaque, seguido da data e horário, além do nome do artista. O uso de ícones visuais, como os copos de caipirinha, reforça a promoção, criando um convite direto ao público para participar da experiência.",
+            images: ["https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-0.jpg"]
         },
         project9: {
-            title: "Ilustrações para Blog",
-            client: "TechFuture Blog",
+            title: "Design para Story – Fim de Semana dos Pais",
+            client: "Prime Conveniência",
             year: "2025",
-            description: "Série de ilustrações conceituais para um blog de tecnologia e inovação, com o objetivo de tornar temas técnicos mais acessíveis e visualmente interessantes para um público amplo.",
-            challenge: "O desafio estava em criar ilustrações que complementassem conteúdos tecnicamente complexos, tornando-os mais acessíveis sem simplificá-los demais ou recorrer a clichês visuais do setor de tecnologia.",
-            solution: "Desenvolvi um estilo de ilustração conceitual que combina elementos abstratos com metáforas visuais concretas. As ilustrações utilizam uma paleta de cores consistente que se alinha com a identidade visual do blog, mas com variações suficientes para distinguir diferentes categorias de conteúdo.",
-            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+            description: "Este design de story foi criado para divulgar a programação especial de fim de semana em homenagem ao Dia dos Pais. A peça utiliza uma fotografia emocionante de um pai com seu filho como plano de fundo, transmitindo carinho e afeto, enquanto as informações do evento aparecem em destaque sobre um degradê azul, que reforça a identidade visual e o clima familiar.",
+            challenge: "O maior desafio foi unir o apelo emocional da data comemorativa com a comunicação clara da programação diversificada do fim de semana. Era preciso dar destaque ao Dia dos Pais sem deixar de organizar os eventos de sexta, sábado e domingo de forma equilibrada e legível.",
+            solution: "A solução combinou uma imagem humanizada e afetuosa com uma hierarquia tipográfica bem definida. O título 'Fim de semana dos Pais' se destaca no centro da peça, enquanto os eventos são listados em uma caixa organizada, com datas e atrações em destaque. A paleta em tons de azul transmite serenidade e confiança, criando um convite acolhedor e especial para o público.",
+            images: ["https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-1.jpg"]
         },
         project10: {
-            title: "Identidade Visual Festival",
-            client: "Festival Sonora",
-            year: "2024",
-            description: "Design completo para festival de música independente, incluindo logo, sistema visual, sinalização, material promocional e presença digital nas redes sociais.",
-            challenge: "O desafio era criar uma identidade visual que fosse versátil o suficiente para funcionar em diversos formatos e contextos, mantendo a coerência entre o ambiente físico do festival e sua presença digital.",
-            solution: "Desenvolvi um sistema de identidade visual baseado em ondas sonoras estilizadas, com uma paleta de cores vibrantes que se transforma em diferentes contextos. O sistema inclui variações programáticas do logo e um conjunto de padrões que podem ser aplicados em diferentes escalas e suportes.",
-            images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
+            title: "Design para Story de Show ao Vivo – Sara Benaia",
+            client: "Prime Conveniência",
+            year: "2025",
+            description: "Este design de story foi criado para divulgar o show ao vivo da cantora Sara Benaia. A peça transmite uma atmosfera vibrante e intimista, utilizando a imagem da artista em destaque, com iluminação quente e cordões de luzes decorativas que remetem a um ambiente de música ao vivo descontraído. O layout reforça o clima de celebração de uma sexta-feira à noite, acompanhado de uma promoção especial de caipirinha em dobro.",
+            challenge: "O desafio principal foi unir a energia contagiante da performance musical com a clareza das informações essenciais — nome da artista, dia, horário e promoção — sem perder o apelo visual. Além disso, era necessário transmitir o aconchego e a proximidade de um show ao vivo em um espaço acolhedor.",
+            solution: "A solução combinou uma paleta quente e iluminada, com destaque para o título 'Show ao Vivo' em tipografia chamativa, seguido pelo nome da artista em fonte cursiva elegante. As informações de data e horário foram posicionadas de forma central e legível, criando equilíbrio com a imagem da cantora em ação. Elementos visuais como as luzes festivas no topo e os copos de caipirinha reforçam o clima de celebração e convite ao público.",
+            images: ["https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-2.jpg"]
         },
         project11: {
             title: "Landing Page SaaS",
