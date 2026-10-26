@@ -3,366 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Designer Criativo</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #6366f1; 
-            --accent: #8b5cf6;   
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --blue-light: #eff6ff; 
-            --blue-medium: #3b82f6; 
-            --blue-dark: #1e40af;   
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--blue-medium);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .hero-text span {
-            display: inline-block;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 0.8s forwards;
-        }
-        
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            transition: transform 0.4s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-        }
-        
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            color: white;
-            padding: 20px;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
-        }
-        
-        .btn-primary {
-            background-color: var(--secondary);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            background-color: var(--blue-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
-        }
-        
-        .skill-bar {
-            height: 8px;
-            border-radius: 4px;
-            background-color: #e2e8f0;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .skill-progress {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            background: linear-gradient(to right, var(--blue-light), var(--blue-dark));
-            width: 0;
-            transition: width 1.5s ease;
-        }
-        
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-        
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        #navbar {
-            transition: all 0.3s ease;
-        }
-        
-        .shrink {
-            padding-top: 0.5rem !important;
-            padding-bottom: 0.5rem !important;
-            background-color: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        .loader-hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loader-icon {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #e2e8f0;
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .cursor {
-            display: inline-block;
-            width: 2px;
-            height: 1.2em;
-            background-color: var(--dark);
-            margin-left: 4px;
-            animation: blink 1s infinite;
-        }
-        
-        @keyframes blink {
-            50% {
-                opacity: 0;
-            }
-        }
-        
-        /* Video Marketing Section Styles */
-        .video-story-container {
-            position: relative;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .video-story-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .video-story-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .video-controls-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .video-story-container:hover .video-controls-overlay {
-            transform: translateY(0);
-        }
-        
-        .story-avatar {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        }
-        
-        .story-interaction {
-            transition: all 0.2s ease;
-        }
-        
-        .story-interaction:hover {
-            transform: scale(1.1);
-        }
-        
-        .video-tag {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: #6366f1;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.25rem;
-            transition: all 0.2s ease;
-        }
-        
-        .video-tag:hover {
-            background: rgba(99, 102, 241, 0.3);
-            transform: translateY(-1px);
-        }
-    </style>
+    <title>Edilson Mendes | Designer Gráfico</title>
+    <meta name="description" content="Portfólio de Edilson Mendes, designer gráfico especialista em identidade visual, anúncios e soluções de marketing.">
+    <meta name="theme-color" content="#4f46e5">
+    <script>document.documentElement.className += ' js';</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://englishhub897785602.imgix.net">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet">
+    <!-- Tailwind só com as classes usadas no site (gerado com PurgeCSS a partir do Tailwind 2.2.19) -->
+    <link href="./assets/css/tailwind.min.css" rel="stylesheet">
+    <link href="./assets/css/site.css" rel="stylesheet">
+    <!-- Ícones carregam sem bloquear a renderização -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></noscript>
 </head>
 <body>
-    
-    <div class="loader">
-        <div class="loader-icon"></div>
-    </div>
+
 
     
-    <nav id="navbar" class="fixed w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg py-4 z-50 transition-all duration-300">
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <nav id="navbar" class="fixed w-full py-4 z-50">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-blue-600">
-                <span class="text-blue-600">Edilson</span> Mendes<span class="text-blue-600">.</span>
+            <a href="index.html" class="brand-logo text-2xl">
+                <span class="text-gradient">Edilson</span> Mendes<span class="dot">.</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="/index.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Início</a>
-                <a href="./routes/projetos.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Projetos</a>
-                <a href="./routes/sobre.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
-                <a href="./routes/contato.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+                <a href="index.html" class="nav-link active" aria-current="page">Início</a>
+                <a href="routes/projetos.html" class="nav-link">Projetos</a>
+                <a href="routes/sobre.html" class="nav-link">Sobre</a>
+                <a href="routes/contato.html" class="nav-link">Contato</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+                    <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                 </button>
             </div>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-4 px-6 shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="/index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Início</a>
-                <a href="./routes/projetos.html" class="text-gray-800 hover:text-indigo-600 font-medium">Projetos</a>
-                <a href="./routes/sobre.html" class="text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
-                <a href="./routes/contato.html" class="text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-3 px-6 shadow-lg">
+            <div class="flex flex-col">
+                <a href="index.html" class="active" aria-current="page">Início</a>
+                <a href="routes/projetos.html">Projetos</a>
+                <a href="routes/sobre.html">Sobre</a>
+                <a href="routes/contato.html">Contato</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="min-h-screen bg-gradient-to-b from-white to-indigo-50 flex items-center relative overflow-hidden">
+    <section class="hero min-h-screen flex items-center relative overflow-hidden">
         <div class="container mx-auto px-6 py-24 md:py-32">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-12 md:mb-0">
-                    <h1 class="text-4xl md:text-6xl font-bold mb-4 hero-text">
+                    <div class="hero-text mb-6">
+                        <span class="available-badge" style="animation-delay: 0s;"><span class="pulse"></span>Disponível para novos projetos</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4 hero-text">
                         <span style="animation-delay: 0.1s;">Olá,</span>
                         <span style="animation-delay: 0.2s;"> eu</span>
                         <span style="animation-delay: 0.3s;"> sou</span>
-                        <span style="animation-delay: 0.4s;"> Edilson</span>
-                        <span style="animation-delay: 0.5s;"> Mendes</span>
+                        <span class="text-gradient" style="animation-delay: 0.4s;"> Edilson</span>
+                        <span class="text-gradient" style="animation-delay: 0.5s;"> Mendes</span>
                     </h1>
-                    <div class="mb-8 text-xl md:text-2xl text-gray-600 hero-text">
-                        <span id="typed-text"></span><span class="cursor"></span>
+                    <div class="mb-8 text-xl md:text-2xl text-gray-600 font-medium" style="min-height: 1.6em;">
+                        <span id="typed-text" data-text="Designer &amp; Criador Visual"></span><span class="typed-cursor" aria-hidden="true"></span>
                     </div>
-                    <p class="text-gray-600 mb-8 hero-text" style="animation-delay: 0.8s;">
-                        Transformando ideias em experiências visuais memoráveis e funcionais. Especialista em design de interfaces, ilustração e Soluções de marketing.
+                    <p class="text-gray-600 text-lg leading-relaxed mb-8 max-w-xl hero-text">
+                        <span style="animation-delay: 0.7s;">Transformando ideias em experiências visuais memoráveis e funcionais. Especialista em design de interfaces, ilustração e Soluções de marketing.</span>
                     </p>
-                    <div class="flex space-x-4 hero-text" style="animation-delay: 1s;">
-                        <a href="#projetos" class="bg-blue-600 hover:bg-blue-700 px-8 py-3 rounded-lg text-white font-medium transition-colors duration-300">Ver Projetos</a>
-                        <a href="./routes/contato.html" class="px-8 py-3 rounded-lg border-2 border-indigo-600 text-indigo-600 font-medium hover:bg-indigo-600 hover:text-white transition duration-300">Contato</a>
+                    <div class="flex flex-wrap gap-4 hero-text">
+                        <span style="animation-delay: 0.85s;"><a href="#projetos" class="btn btn-primary">Ver Projetos</a></span>
+                        <span style="animation-delay: 0.95s;"><a href="./routes/contato.html" class="btn btn-ghost">Contato</a></span>
                     </div>
                 </div>
                 <div class="md:w-1/2 flex justify-center">
-                    <div class="relative w-80 h-80 md:w-96 md:h-96 rounded-full bg-indigo-100 animate-on-scroll">
-                        <img src="https://englishhub897785602.imgix.net/edilson/perfil2.jpeg" alt="Designer" class="absolute inset-0 w-full h-full object-cover rounded-full p-2" loading="lazy">
+                    <div class="avatar-ring w-72 h-72 md:w-96 md:h-96 animate-on-scroll">
+                        <!-- Imagem principal: carrega já, com prioridade (não é lazy) -->
+                        <img src="https://englishhub897785602.imgix.net/edilson/perfil2.jpeg?auto=format,compress&amp;fit=crop&amp;crop=faces&amp;w=640&amp;h=640" alt="Edilson Mendes" class="w-full h-full object-cover" width="384" height="384" fetchpriority="high" decoding="async">
                     </div>
                 </div>
             </div>
         </div>
-        <div class="absolute -bottom-16 -right-16 w-64 h-64 bg-purple-200 rounded-full opacity-50 blur-3xl"></div>
-        <div class="absolute -top-16 -left-16 w-64 h-64 bg-indigo-200 rounded-full opacity-50 blur-3xl"></div>
     </section>
 
-    <section class="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 relative overflow-hidden">
+    <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll text-gray-800">
+                <span class="section-eyebrow mb-4 animate-on-scroll">Bastidores</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">
                     Veja o Processo Criativo
                 </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded mx-auto mb-6 animate-on-scroll"></div>
+                <div class="title-bar mx-auto mb-6 animate-on-scroll"></div>
                 <p class="text-lg text-gray-600 animate-on-scroll">
                     Acompanhe um pouco do meu processo de criação e veja como transformo ideias em realidade
                 </p>
             </div>
-            
-            <div class="relative max-w-xl mx-auto">
-                  <video class="w-full h-full object-contain" controls src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759677651/saida_2_r9rekt.mp4">Seu navegador não suporta o elemento de vídeo.</video>
+
+            <div class="max-w-xl mx-auto animate-on-scroll">
+                <div class="vp" data-video-player data-title="Processo criativo">
+                    <video controls playsinline preload="metadata"
+                        poster="https://res.cloudinary.com/dhizdjuaq/video/upload/so_1,q_auto,f_jpg,w_960/v1759677651/saida_2_r9rekt.jpg">
+                        <!-- q_auto: Cloudinary entrega o vídeo comprimido; se falhar, cai no original -->
+                        <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/q_auto/v1759677651/saida_2_r9rekt.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759677651/saida_2_r9rekt.mp4" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
+                </div>
             </div>
         </div>
-     </section>
-    
+    </section>
+
     <section id="projetos" class="py-20 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-2 animate-on-scroll">Meus Projetos</h2>
-            <div class="w-20 h-1 bg-indigo-600 rounded mb-8 animate-on-scroll"></div>
+            <span class="section-eyebrow mb-4 animate-on-scroll">Portfólio</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 animate-on-scroll">Meus Projetos</h2>
+            <div class="title-bar mb-8 animate-on-scroll"></div>
             <p class="text-gray-600 mb-12 max-w-2xl animate-on-scroll">
                 Uma seleção dos meus trabalhos recentes nas áreas de Design Gráfico.
             </p>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg" alt="Logo desing" class="w-full h-64 object-cover" loading="lazy">
+                <div class="project-card animate-on-scroll">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Logo desing" class="w-full h-64 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Logo Bella italia</h3>
                         <p class="text-gray-200 mb-4">Design de uma logo Feita para uma das maiores Pizzarias de Porterinha</p>
@@ -370,11 +135,11 @@
                     </div>
                 </div>
                 
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Design%20Storie%20Prime%20JN%20dia%20dos%20namorados%20_page-0001.jpg"
+                <div class="project-card animate-on-scroll">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Design%20Storie%20Prime%20JN%20dia%20dos%20namorados%20_page-0001.jpg?auto=format,compress&amp;fit=max&amp;w=800"
                         alt="Anuncio Project"
                         class="w-full h-64 object-cover object-top mx-auto"
-                        loading="lazy">
+                        loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Anuncio Dia dos namorados</h3>
                         <p class="text-gray-200 mb-4">Criação de um anuncio promocional do dia dos namorados Posto JN</p>
@@ -383,8 +148,8 @@
                 </div>
 
                 
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg" alt="Anuncio Project" class="w-full h-64 object-cover" loading="lazy">
+                <div class="project-card animate-on-scroll">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Anuncio Project" class="w-full h-64 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Anuncio Show</h3>
                         <p class="text-gray-200 mb-4">Criação de um anuncio promocional de um show na Bella italia</p>
@@ -396,8 +161,8 @@
                 
                 
                 <!--  
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="/api/placeholder/600/400" alt="Illustration Project" class="w-full h-64 object-cover" loading="lazy">
+                <div class="project-card animate-on-scroll">
+                    <img src="/api/placeholder/600/400" alt="Illustration Project" class="w-full h-64 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Ilustrações Livro Infantil</h3>
                         <p class="text-gray-200 mb-4">Série de ilustrações para livro infantil educativo sobre preservação ambiental.</p>
@@ -406,8 +171,8 @@
                 </div>
                 
      
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="/api/placeholder/600/400" alt="UI Design" class="w-full h-64 object-cover" loading="lazy">
+                <div class="project-card animate-on-scroll">
+                    <img src="/api/placeholder/600/400" alt="UI Design" class="w-full h-64 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Dashboard Financeiro</h3>
                         <p class="text-gray-200 mb-4">Interface de usuário para dashboard financeiro com foco em visualização de dados.</p>
@@ -416,34 +181,30 @@
                 </div>
                 
                
-                <div class="project-card rounded-xl shadow-lg overflow-hidden animate-on-scroll">
-                    <img src="/api/placeholder/600/400" alt="Packaging Design" class="w-full h-64 object-cover" loading="lazy">
+                <div class="project-card animate-on-scroll">
+                    <img src="/api/placeholder/600/400" alt="Packaging Design" class="w-full h-64 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <h3 class="text-xl font-bold mb-2">Embalagem Cosmético Natural</h3>
                         <p class="text-gray-200 mb-4">Design de embalagem sustentável para linha de cosméticos naturais.</p>
                         <a href="#" class="text-indigo-300 hover:text-white transition">Ver detalhes →</a>
                     </div>
                 </div>
+                -->
             </div>
-            -->
-            
-            <div class="text-center mt-12">
-                <a href="./routes/projetos.html" class="btn-primary px-8 py-3 rounded-lg text-white font-medium inline-block animate-on-scroll">
-                    Ver todos os projetos
+
+            <div class="text-center mt-12 animate-on-scroll">
+                <a href="./routes/projetos.html" class="btn btn-primary">
+                    Ver todos os projetos <span aria-hidden="true">→</span>
                 </a>
             </div>
         </div>
     </section>
-        
-        <!-- Background decorative elements -->
-        <div class="absolute top-20 left-10 w-32 h-32 bg-indigo-200 rounded-full opacity-20 blur-2xl"></div>
-        <div class="absolute bottom-20 right-10 w-40 h-40 bg-purple-200 rounded-full opacity-20 blur-2xl"></div>
-    </section>
 
-    <section class="py-20 bg-indigo-50">
+    <section class="py-20" style="background: #f3f4ff;">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-2 animate-on-scroll">Minhas Habilidades</h2>
-            <div class="w-20 h-1 bg-indigo-600 rounded mb-8 animate-on-scroll"></div>
+            <span class="section-eyebrow mb-4 animate-on-scroll">Ferramentas</span>
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 animate-on-scroll">Minhas Habilidades</h2>
+            <div class="title-bar mb-10 animate-on-scroll"></div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
 
@@ -451,7 +212,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">UI/UX Design</span>
-                        <span class="text-indigo-600">95%</span>
+                        <span class="font-semibold text-indigo-600">95%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="95"></div>
@@ -461,7 +222,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">Adobe Photoshop</span>
-                        <span class="text-indigo-600">90%</span>
+                        <span class="font-semibold text-indigo-600">90%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="90"></div>
@@ -472,7 +233,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">Illustrator</span>
-                        <span class="text-indigo-600">85%</span>
+                        <span class="font-semibold text-indigo-600">85%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="85"></div>
@@ -484,7 +245,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">Figma</span>
-                        <span class="text-indigo-600">98%</span>
+                        <span class="font-semibold text-indigo-600">98%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="98"></div>
@@ -495,7 +256,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">Design de Marca</span>
-                        <span class="text-indigo-600">92%</span>
+                        <span class="font-semibold text-indigo-600">92%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="92"></div>
@@ -506,7 +267,7 @@
                 <div class="animate-on-scroll">
                     <div class="flex justify-between mb-2">
                         <span class="font-medium">Motion Design</span>
-                        <span class="text-indigo-600">78%</span>
+                        <span class="font-semibold text-indigo-600">78%</span>
                     </div>
                     <div class="skill-bar">
                         <div class="skill-progress" data-width="78"></div>
@@ -519,22 +280,23 @@
     
     <section class="py-20 bg-white">
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-center animate-on-scroll">O que dizem sobre mim</h2>
-            <div class="w-20 h-1 bg-indigo-600 rounded mb-8 mx-auto animate-on-scroll"></div>
+            <div class="text-center">
+                <span class="section-eyebrow mb-4 animate-on-scroll">Depoimentos</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-3 animate-on-scroll">O que dizem sobre mim</h2>
+                <div class="title-bar mx-auto mb-8 animate-on-scroll"></div>
+            </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
                
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg animate-on-scroll">
+                <div class="card-soft p-8 animate-on-scroll">
                     <div class="text-indigo-500 mb-4">
-                        <i class="fas fa-quote-left text-3xl"></i>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.6 3.5 9.7 3.5 13.6V19h6.2v-6.1H6.6c0-2.6 1.4-4.6 4-5.8L9.6 5Zm10 0c-3.7 1.6-6.1 4.7-6.1 8.6V19h6.2v-6.1h-3.1c0-2.6 1.4-4.6 4-5.8L19.6 5Z"/></svg>
                     </div>
                     <p class="text-gray-600 mb-6 italic">
                         "Após contratar os serviços, percebi um crescimento significativo no meu negócio. O faturamento duplicou de forma surpreendente! Isso só foi possível graças à estratégia e profissionalismo que foram aplicados no meu estúdio."
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4">
-                            <img src="/api/placeholder/50/50" alt="Cliente" class="w-full h-full object-cover rounded-full" loading="lazy">
-                        </div>
+                        <span class="initials mr-4" aria-hidden="true">J</span>
                         <div>
                             <h4 class="font-bold">Jamily</h4>
                             <p class="text-sm text-gray-500">Dona do studio novo canto</p>
@@ -543,17 +305,15 @@
                 </div>
                 
                 
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg animate-on-scroll">
+                <div class="card-soft p-8 animate-on-scroll">
                     <div class="text-indigo-500 mb-4">
-                        <i class="fas fa-quote-left text-3xl"></i>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.6 3.5 9.7 3.5 13.6V19h6.2v-6.1H6.6c0-2.6 1.4-4.6 4-5.8L9.6 5Zm10 0c-3.7 1.6-6.1 4.7-6.1 8.6V19h6.2v-6.1h-3.1c0-2.6 1.4-4.6 4-5.8L19.6 5Z"/></svg>
                     </div>
                     <p class="text-gray-600 mb-6 italic">
                         "Parabéns pelo excelente trabalho! A qualidade do serviço prestado superou todas as minhas expectativas. É visível o comprometimento e a dedicação em cada detalhe"
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4">
-                            <img src="/api/placeholder/50/50" alt="Cliente" class="w-full h-full object-cover rounded-full" loading="lazy">
-                        </div>
+                        <span class="initials mr-4" aria-hidden="true">L</span>
                         <div>
                             <h4 class="font-bold">Lucas Barbearia</h4>
                             <p class="text-sm text-gray-500">CEO, Lucas barber</p>
@@ -561,17 +321,15 @@
                     </div>
                 </div>
                 
-                <div class="bg-gray-50 p-8 rounded-xl shadow-lg animate-on-scroll">
+                <div class="card-soft p-8 animate-on-scroll">
                     <div class="text-indigo-500 mb-4">
-                        <i class="fas fa-quote-left text-3xl"></i>
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9.6 5C5.9 6.6 3.5 9.7 3.5 13.6V19h6.2v-6.1H6.6c0-2.6 1.4-4.6 4-5.8L9.6 5Zm10 0c-3.7 1.6-6.1 4.7-6.1 8.6V19h6.2v-6.1h-3.1c0-2.6 1.4-4.6 4-5.8L19.6 5Z"/></svg>
                     </div>
                     <p class="text-gray-600 mb-6 italic">
                         "Sem dúvida, recomendarei os serviços para outras pessoas. A comunicação foi clara, objetiva e extremamente eficiente, o que tornou todo o processo muito mais tranquilo e agradável"
                     </p>
                     <div class="flex items-center">
-                        <div class="w-12 h-12 rounded-full bg-gray-300 mr-4">
-                            <img src="/api/placeholder/50/50" alt="Cliente" class="w-full h-full object-cover rounded-full" loading="lazy">
-                        </div>
+                        <span class="initials mr-4" aria-hidden="true">K</span>
                         <div>
                             <h4 class="font-bold">Katia</h4>
                             <p class="text-sm text-gray-500">Psicanalista</p>
@@ -582,13 +340,13 @@
         </div>
     </section>
 
-    <section class="py-20 bg-indigo-600 text-white">
+    <section class="py-20 text-white" style="background: linear-gradient(120deg, #2563eb 0%, #4f46e5 45%, #7c3aed 100%);">
         <div class="container mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Vamos Trabalhar Juntos?</h2>
-            <p class="max-w-lg mx-auto mb-8 animate-on-scroll">
+            <p class="max-w-lg mx-auto mb-8 text-indigo-100 animate-on-scroll">
                 Estou disponível para novos projetos e parcerias. Entre em contato para discutirmos como posso ajudar a transformar suas ideias em realidade.
             </p>
-            <a href="./routes/contato.html" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-block animate-on-scroll">
+            <a href="./routes/contato.html" class="btn btn-light animate-on-scroll">
                 Entre em Contato
             </a>
         </div>
@@ -608,7 +366,7 @@
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/edilsonmendessantos/" target="_blank" class="text-gray-400 hover:text-white transition">
+                    <a href="https://www.instagram.com/edilsonmendessantos/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
                     <a href="#" class="text-gray-400 hover:text-white transition">
@@ -631,82 +389,13 @@
                 </p>
                 
                 <div class="flex space-x-6 text-sm text-gray-500">
-                    <a href="https://www.instagram.com/edrioborges/" target="_blank" class="hover:text-gray-300 transition">Site Feito com ❤ por Edrio Borges</a>
+                    <a href="https://www.instagram.com/edrioborges/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition">Site Feito com ❤ por Edrio Borges</a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <script>
-       
-        window.addEventListener('load', () => {
-            const loader = document.querySelector('.loader');
-            setTimeout(() => {
-                loader.classList.add('loader-hidden');
-            }, 500);
-        });
-        
-        
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-        
-        
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shrink');
-            } else {
-                navbar.classList.remove('shrink');
-            }
-        });
-        
-        
-        const typedTextElement = document.getElementById('typed-text');
-        const textToType = "Designer & Criador Visual";
-        let i = 0;
-        
-        function typeWriter() {
-            if (i < textToType.length) {
-                typedTextElement.textContent += textToType.charAt(i);
-                i++;
-                setTimeout(typeWriter, 100);
-            }
-        }
-        
-        setTimeout(typeWriter, 1000);
-        
-        
-        const animateElements = document.querySelectorAll('.animate-on-scroll');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-        
-        animateElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        
-        const skillObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const progressBars = entry.target.querySelectorAll('.skill-progress');
-                    progressBars.forEach(bar => {
-                        const width = bar.getAttribute('data-width');
-                        bar.style.width = width + '%';
-                    });
-                }
-            });
-        }, { threshold: 0.5 });
-        
-        document.querySelectorAll('.skill-bar').forEach(skill => {
-            skillObserver.observe(skill);
-        });
-    </script>
+    <script src="./assets/js/site.js" defer></script>
+    <script src="./assets/js/video-player.js" defer></script>
 </body>
 </html>

@@ -3,322 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projetos | Designer Criativo</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <title>Projetos | Edilson Mendes</title>
+    <meta name="description" content="Projetos de design gráfico de Edilson Mendes: logos, anúncios, cardápios e stories.">
+    <meta name="theme-color" content="#4f46e5">
+    <script>document.documentElement.className += ' js';</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://englishhub897785602.imgix.net">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet">
+    <!-- Tailwind só com as classes usadas no site (gerado com PurgeCSS a partir do Tailwind 2.2.19) -->
+    <link href="../assets/css/tailwind.min.css" rel="stylesheet">
+    <link href="../assets/css/site.css" rel="stylesheet">
+    <!-- Ícones carregam sem bloquear a renderização -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></noscript>
     <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #6366f1;
-            --accent: #8b5cf6;
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --blue-light: #eff6ff; 
-            --blue-medium: #3b82f6; 
-            --blue-dark: #1e40af;   
-        }
-        
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        #navbar {
-            transition: all 0.3s ease;
-        }
-        
-        .shrink {
-            padding-top: 0.5rem !important;
-            padding-bottom: 0.5rem !important;
-            background-color: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        .loader-hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loader-icon {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #e2e8f0;
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-        
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 1rem;
-            transition: transform 0.5s ease, box-shadow 0.5s ease;
-        }
-        
-        .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        
-        .project-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(15, 23, 42, 0.9), transparent);
-            color: white;
-            padding: 20px;
-            transform: translateY(70%);
-            transition: transform 0.4s ease;
-        }
-        
-        .project-card:hover .project-overlay {
-            transform: translateY(0);
-        }
-        
         .tag {
             display: inline-block;
-            background-color: rgba(99, 102, 241, 0.2);
-            color: var(--secondary);
-            padding: 0.25rem 0.75rem;
+            background-color: rgba(139, 92, 246, .25);
+            color: #ddd6fe;
+            padding: .2rem .7rem;
             border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
+            font-size: .72rem;
+            font-weight: 600;
+            margin-right: .4rem;
+            margin-bottom: .4rem;
         }
-        
+
         .filter-btn {
-            background-color: transparent;
-            color: var(--dark);
-            border: 1px solid var(--dark);
-            padding: 0.5rem 1rem;
+            padding: .55rem 1.1rem;
             border-radius: 9999px;
-            transition: all 0.3s ease;
-            font-size: 0.875rem;
+            border: 1px solid var(--line);
+            background: #fff;
+            color: var(--ink-2);
+            font-size: .875rem;
+            font-weight: 600;
+            transition: background-color .2s ease, color .2s ease, border-color .2s ease, transform .2s ease;
         }
-        
-        .filter-btn:hover {
-            background-color: var(--dark);
-            color: white;
+        .filter-btn:active { transform: scale(.96); }
+        @media (hover: hover) {
+            .filter-btn:hover { border-color: var(--brand); color: var(--brand); }
         }
-        
         .filter-btn.active {
-            background-color: var(--secondary);
-            border-color: var(--secondary);
-            color: white;
-        }
-        
-        .page-header {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--blue-light) 0%, #ffffff 100%);
+            background: var(--grad);
+            border-color: transparent;
+            color: #fff;
         }
 
-         .page-header::before, .page-header::after {
-             content: '';
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            opacity: 0.1;
-             animation: pulse-bubble 15s infinite alternate ease-in-out;
-         }
-        .page-header::before { bottom: -40%; left: -20%; width: 80%; height: 80%; background-color: var(--blue-medium); }
-        .page-header::after { top: -40%; right: -20%; width: 70%; height: 70%; background-color: var(--accent); animation-delay: -5s; }
+        /* Filtro: some com opacity/scale, depois sai do layout */
+        .project-item.is-hiding { opacity: 0 !important; transform: scale(.94) !important; transition: opacity .25s ease, transform .25s ease !important; }
+        .project-item.is-hidden { display: none; }
 
-
-        @keyframes pulse-bubble {
-            0% { transform: scale(1); opacity: 0.1; }
-            100% { transform: scale(1.1); opacity: 0.15; }
-        }
-
-        
         .project-details {
-            display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(15, 23, 42, 0.95);
+            inset: 0;
             z-index: 999;
             overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;
+            background-color: rgba(11, 16, 32, .96);
             opacity: 0;
-            transition: opacity 0.5s ease;
+            visibility: hidden;
+            transition: opacity .35s ease, visibility 0s linear .35s;
         }
-        
         .project-details.active {
-            display: block;
             opacity: 1;
+            visibility: visible;
+            transition: opacity .35s ease;
         }
-        
+        #project-content {
+            transform: translate3d(0, 30px, 0);
+            transition: transform .5s var(--ease-out);
+        }
+        .project-details.active #project-content { transform: none; }
+        .close-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 9999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, .1);
+            color: #fff;
+            transition: background-color .2s ease, transform .2s ease;
+        }
+        .close-btn:active { transform: scale(.92); }
+        @media (hover: hover) { .close-btn:hover { background: rgba(255, 255, 255, .2); } }
+
         .gallery-image {
             opacity: 0;
-            transform: scale(0.9);
-            transition: transform 0.5s ease, opacity 0.5s ease;
-        }
-        
-        .gallery-image.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        
-        /* Video Marketing Section Styles */
-        .video-story-container {
-            position: relative;
-            border-radius: 1.5rem;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .video-story-container:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
-        }
-        
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(180deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
-            pointer-events: none;
-            z-index: 1;
-        }
-        
-        .video-story-content {
-            position: relative;
-            z-index: 2;
-        }
-        
-        .video-controls-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.7));
-            padding: 1rem;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-        
-        .video-story-container:hover .video-controls-overlay {
-            transform: translateY(0);
-        }
-        
-        .story-avatar {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-        }
-        
-        .story-interaction {
-            transition: all 0.2s ease;
-        }
-        
-        .story-interaction:hover {
-            transform: scale(1.1);
-        }
-        
-        .video-tag {
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.2);
-            color: #6366f1;
-            padding: 0.25rem 0.75rem;
-            border-radius: 9999px;
-            font-size: 0.75rem;
-            font-weight: 500;
-            margin-right: 0.5rem;
-            margin-bottom: 0.25rem;
-            transition: all 0.2s ease;
-        }
-        
-        .video-tag:hover {
-            background: rgba(99, 102, 241, 0.3);
-            transform: translateY(-1px);
+            transform: translate3d(0, 20px, 0);
+            animation: fade-up .6s var(--ease-out) forwards;
         }
     </style>
 </head>
 <body>
 
-    <div class="loader">
-        <div class="loader-icon"></div>
-    </div>
 
    
-    <nav id="navbar" class="fixed w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg py-4 z-50 transition-all duration-300">
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <nav id="navbar" class="fixed w-full py-4 z-50">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="../index.html" class="text-2xl font-bold text-indigo-600">
-                <span class="text-purple-600">Edilson</span> Mendes<span class="text-purple-600">.</span>
+            <a href="../index.html" class="brand-logo text-2xl">
+                <span class="text-gradient">Edilson</span> Mendes<span class="dot">.</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="../index.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Início</a>
-                <a href="projetos.html" class="nav-link text-indigo-600 hover:text-indigo-600 font-medium">Projetos</a>
-                <a href="sobre.html" class="nav-link text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
-                <a href="contato.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+                <a href="../index.html" class="nav-link">Início</a>
+                <a href="projetos.html" class="nav-link active" aria-current="page">Projetos</a>
+                <a href="sobre.html" class="nav-link">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+                    <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                 </button>
             </div>
         </div>
-        
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-4 px-6 shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="../index.html" class="text-gray-800 hover:text-indigo-600 font-medium">Início</a>
-                <a href="projetos.html" class="text-indigo-600 hover:text-indigo-600 font-medium">Projetos</a>
-                <a href="sobre.html" class="text-gray-800 hover:text-indigo-600 font-medium">Sobre</a>
-                <a href="contato.html" class="text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-3 px-6 shadow-lg">
+            <div class="flex flex-col">
+                <a href="../index.html">Início</a>
+                <a href="projetos.html" class="active" aria-current="page">Projetos</a>
+                <a href="sobre.html">Sobre</a>
+                <a href="contato.html">Contato</a>
             </div>
         </div>
     </nav>
@@ -326,7 +135,7 @@
     <header class="page-header py-32 md:py-40 relative">
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-900 animate-on-scroll">Meus Projetos</h1>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 animate-on-scroll">Meus <span class="text-gradient">Projetos</span></h1>
                 <p class="text-lg md:text-xl text-gray-700 mb-8 animate-on-scroll" style="transition-delay: 0.2s;">
                     Uma seleção cuidadosa dos meus melhores trabalhos em design, branding e criação visual.
                 </p>
@@ -336,12 +145,12 @@
 
     <section class="py-8 bg-white">
         <div class="container mx-auto px-6">
-            <div class="flex flex-wrap justify-center gap-4 mb-8">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="ui">UI/UX Design</button>
-                <button class="filter-btn" data-filter="branding">Branding</button>
-                <button class="filter-btn" data-filter="illustration">Ilustração</button>
-                <button class="filter-btn" data-filter="web">Web</button>
+            <div class="flex flex-wrap justify-center gap-3 mb-4" role="group" aria-label="Filtrar projetos">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">Todos</button>
+                <button class="filter-btn" data-filter="ui" aria-pressed="false">UI/UX Design</button>
+                <button class="filter-btn" data-filter="branding" aria-pressed="false">Branding</button>
+                <button class="filter-btn" data-filter="illustration" aria-pressed="false">Ilustração</button>
+                <button class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
             </div>
         </div>
     </section>
@@ -349,44 +158,44 @@
     <section class="py-12 bg-white">
         <div class="container mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid">
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg" alt="App Fitness Pro" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="ui">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Bellaitalia.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="App Fitness Pro" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Logo</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Logo Bella italia</h3>
                         <p class="text-gray-200 mb-4">Design uma logo que fosse chamativa e atraente aos olhos do público</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project1">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project1">Ver detalhes →</button>
                     </div>
                 </div>
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
-                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject1.jpeg" alt="Website Café Aroma" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="web">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject1.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Website Café Aroma" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Anuncio</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Design de Imagem Motivacional</h3>
                         <p class="text-gray-200 mb-4">Analise como o contraste e a hierarquia visual guiam o seu olhar nesta mensagem inspiradora!</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project2">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project2">Ver detalhes →</button>
                     </div>
                 </div>
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
-                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg" alt="Branding Eco Vida" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="branding">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject2.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Branding Eco Vida" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Anuncio</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Adeus Férias</h3>
                         <p class="text-gray-200 mb-4">Sinta a energia tropical e a animação da festa 'Adeus Férias'</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project3">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project3">Ver detalhes →</button>
                     </div>
                 </div>
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
-                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject3.jpeg" alt="Ilustrações Livro Infantil" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="illustration">
+                    <img src="https://englishhub897785602.imgix.net/edilson/imgProject3.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Ilustrações Livro Infantil" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Ilustração</span>
@@ -394,12 +203,12 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">'Dia dos Namorados'</h3>
                         <p class="text-gray-200 mb-4">Deixe-se envolver pela atmosfera romântica que emana deste design especial para o Dia dos Namorados!</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project4">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project4">Ver detalhes →</button>
                     </div>
                 </div>
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
-                    <img src="https://englishhub897785602.imgix.net/edilson/musicaAovivo.jpg" alt="Dashboard Financeiro" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="ui">
+                    <img src="https://englishhub897785602.imgix.net/edilson/musicaAovivo.jpg?auto=format,compress&amp;fit=max&amp;w=800" alt="Dashboard Financeiro" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Anuncio</span>
@@ -407,12 +216,12 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Anuncio de show musical</h3>
                         <p class="text-gray-200 mb-4">Sinta a vibração do 'Sextou' através do design convidativo deste anúncio!</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project5">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project5">Ver detalhes →</button>
                     </div>
                 </div>
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Festivaldocaldo1.jpeg" alt="Cardapio" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="branding">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Festivaldocaldo1.jpeg?auto=format,compress&amp;fit=max&amp;w=800" alt="Cardapio" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Anuncio</span>
@@ -420,27 +229,27 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Cardapio festival do caldo</h3>
                         <p class="text-gray-200 mb-4">Descubra a arte por trás do convite ao Festival do Caldo!</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project6">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project6">Ver detalhes →</button>
                     </div>
                 </div>
                 
                 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Design%20Storie%20Prime%20JN%20dia%20dos%20namorados%20_page-0001.jpg"
+                <div class="project-card project-item animate-on-scroll" data-category="web">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Design%20Storie%20Prime%20JN%20dia%20dos%20namorados%20_page-0001.jpg?auto=format,compress&amp;fit=max&amp;w=800"
                         alt="Anuncio Project"
                         class="w-full h-64 object-cover object-top mx-auto"
-                        loading="lazy">
+                        loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Anuncio</span>
                         </div>
                         <h3 class="text-xl font-bold mb-2">Anuncio JN</h3>
                         <p class="text-gray-200 mb-4">Anuncio feito pelo para o JN Para o dias dos namorados</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project7">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project7">Ver detalhes →</button>
                     </div>
                 </div>
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="ui">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-0.jpg"  class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="ui">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show%20Rodrigo%20prime%20jn%20-1-imagens-0.jpg?auto=format,compress&amp;fit=max&amp;w=800"  class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Prime Conveniência</span>
@@ -448,11 +257,11 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Show Rodrigo prime jn</h3>
                         <p class="text-gray-200 mb-4">Anuncio Show Prime Conveniência</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project8">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project8">Ver detalhes →</button>
                     </div>
                 </div>
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-1.jpg"  class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="illustration">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show%20Rodrigo%20prime%20jn%20-1-imagens-1.jpg?auto=format,compress&amp;fit=max&amp;w=800"  class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Prime Conveniência</span>
@@ -460,12 +269,12 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">>Dia dos Pais na Prime Jn</h3>
                         <p class="text-gray-200 mb-4">Anuncia para os dias dos pais da Prime Jn</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project9">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project9">Ver detalhes →</button>
                     </div>
                 </div>
             <!--
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="branding">
-                    <img src="https://englishhub897785602.imgix.net/edilson/Show Rodrigo prime jn -1-imagens-2.jpg" alt="Identidade Visual Festival" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="branding">
+                    <img src="https://englishhub897785602.imgix.net/edilson/Show%20Rodrigo%20prime%20jn%20-1-imagens-2.jpg?auto=format,compress&amp;fit=max&amp;w=800" alt="Identidade Visual Festival" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Prime Conveniência</span>
@@ -473,14 +282,14 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Show com Sara Benaia</h3>
                         <p class="text-gray-200 mb-4">Design De Anuncio de Show para o Jn</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project10">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project10">Ver detalhes →</button>
                     </div>
                 </div>
             
             
                  Project 11 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="web">
-                    <img src="/api/placeholder/800/600" alt="Landing Page SaaS" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="web">
+                    <img src="/api/placeholder/800/600" alt="Landing Page SaaS" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Web</span>
@@ -488,13 +297,13 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Landing Page SaaS</h3>
                         <p class="text-gray-200 mb-4">Design de landing page de alta conversão para empresa de software como serviço.</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project11">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project11">Ver detalhes →</button>
                     </div>
                 </div>
                 
                  Project 12 
-                <div class="project-card shadow-lg overflow-hidden project-item" data-category="illustration">
-                    <img src="/api/placeholder/800/600" alt="Série de Posters" class="w-full h-72 object-cover gallery-image" loading="lazy">
+                <div class="project-card project-item animate-on-scroll" data-category="illustration">
+                    <img src="/api/placeholder/800/600" alt="Série de Posters" class="w-full h-72 object-cover" loading="lazy" decoding="async">
                     <div class="project-overlay">
                         <div class="flex gap-2 mb-3">
                             <span class="tag">Ilustração</span>
@@ -502,7 +311,7 @@
                         </div>
                         <h3 class="text-xl font-bold mb-2">Série de Posters</h3>
                         <p class="text-gray-200 mb-4">Coleção de posters artísticos para exposição sobre cultura urbana contemporânea.</p>
-                        <button class="text-indigo-300 hover:text-white transition view-project" data-project="project12">Ver detalhes →</button>
+                        <button class="text-indigo-200 hover:text-white font-semibold transition view-project" data-project="project12">Ver detalhes →</button>
                     </div>
                 </div>
                   -->
@@ -510,11 +319,11 @@
         </div>
     </section>
 
-    <div id="project-details" class="project-details">
+    <div id="project-details" class="project-details" role="dialog" aria-modal="true" aria-label="Detalhes do projeto">
         <div class="container mx-auto px-6 py-12">
             <div class="flex justify-end mb-8">
-                <button id="close-details" class="text-white hover:text-indigo-300 transition">
-                    <i class="fas fa-times text-2xl"></i>
+                <button id="close-details" class="close-btn" type="button" aria-label="Fechar">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                 </button>
             </div>
             <div id="project-content" class="text-white">
@@ -524,48 +333,39 @@
     </div>
 
     <!-- Video Marketing Section -->
-    <section class="py-20 bg-gradient-to-br from-indigo-50 to-purple-50 relative overflow-hidden">
+    <section class="py-20 relative overflow-hidden" style="background: linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center mb-12">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll text-gray-800">
+                <span class="section-eyebrow mb-4 animate-on-scroll">Bastidores</span>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">
                     Veja o Processo Criativo
                 </h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-indigo-600 to-purple-600 rounded mx-auto mb-6 animate-on-scroll"></div>
+                <div class="title-bar mx-auto mb-6 animate-on-scroll"></div>
                 <p class="text-lg text-gray-600 animate-on-scroll">
                     Acompanhe um pouco do meu processo de criação e veja como transformo ideias em realidade
                 </p>
             </div>
             
-            <div class="relative max-w-xl mx-auto">
-                <div class="video-story-container bg-white p-4 animate-on-scroll">
-                    <div class="aspect-video bg-black rounded-xl overflow-hidden relative">
-                        <video 
-                            class="w-full h-full object-contain"
-                            controls
-                            preload="metadata"
-                        >
-                            <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759677651/saida_2_r9rekt.mp4" type="video/mp4">
-                            <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759677651/saida_2_r9rekt.mp4" type="video/quicktime">
-                            Seu navegador não suporta o elemento de vídeo.
-                        </video>
-                        
-                        <!-- Video overlay -->
-                        <div class="video-overlay"></div>
-                        
-                       
-                    </div>
+            <div class="max-w-xl mx-auto animate-on-scroll">
+                <div class="vp" data-video-player data-title="Processo criativo">
+                    <video controls playsinline preload="metadata"
+                        poster="https://res.cloudinary.com/dhizdjuaq/video/upload/so_1,q_auto,f_jpg,w_960/v1759677651/saida_2_r9rekt.jpg">
+                        <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/q_auto/v1759677651/saida_2_r9rekt.mp4" type="video/mp4">
+                        <source src="https://res.cloudinary.com/dhizdjuaq/video/upload/v1759677651/saida_2_r9rekt.mp4" type="video/mp4">
+                        Seu navegador não suporta o elemento de vídeo.
+                    </video>
                 </div>
             </div>
         </div>
       </section>
 
-    <section class="py-20 bg-indigo-600 text-white">
+    <section class="py-20 text-white" style="background: linear-gradient(120deg, #2563eb 0%, #4f46e5 45%, #7c3aed 100%);">
         <div class="container mx-auto px-6 text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-4">Tem um projeto em mente?</h2>
-            <p class="max-w-lg mx-auto mb-8">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4 animate-on-scroll">Tem um projeto em mente?</h2>
+            <p class="max-w-lg mx-auto mb-8 text-indigo-100 animate-on-scroll">
                 Estou disponível para novos desafios e colaborações. Vamos conversar sobre como posso ajudar a transformar sua visão em realidade.
             </p>
-            <a href="./contato.html" class="bg-white text-indigo-600 px-8 py-3 rounded-lg font-medium hover:bg-gray-100 transition duration-300 inline-block">
+            <a href="./contato.html" class="btn btn-light animate-on-scroll">
                 Vamos Trabalhar Juntos
             </a>
         </div>
@@ -584,7 +384,7 @@
                 </div>
                 
                 <div class="flex space-x-6">
-                    <a href="https://www.instagram.com/edilsonmendessantos/" class="text-gray-400 hover:text-white transition">
+                    <a href="https://www.instagram.com/edilsonmendessantos/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white transition">
                         <i class="fab fa-instagram text-xl"></i>
                     </a>
                     <a href="#" class="text-gray-400 hover:text-white transition">
@@ -607,88 +407,15 @@
                 </p>
                 
                 <div class="flex space-x-6 text-sm text-gray-500">
-                    <a href="https://www.instagram.com/edrioborges/" class="hover:text-gray-300 transition">Site Feito com ❤ por Edrio Borges</a>
+                    <a href="https://www.instagram.com/edrioborges/" target="_blank" rel="noopener noreferrer" class="hover:text-gray-300 transition">Site Feito com ❤ por Edrio Borges</a>
                 </div>
             </div>
         </div>
     </footer>
 
+<script src="../assets/js/site.js" defer></script>
+<script src="../assets/js/video-player.js" defer></script>
 <script>
-    gsap.registerPlugin(ScrollTrigger);
-    
-    window.addEventListener('load', () => {
-        const loader = document.querySelector('.loader');
-        setTimeout(() => {
-            loader.classList.add('loader-hidden');
-        }, 500);
-        
-        // Start animations after page loads
-        initAnimations();
-    });
-    
-    document.getElementById('menu-toggle').addEventListener('click', () => {
-        document.getElementById('mobile-menu').classList.toggle('hidden');
-    });
-    
-    window.addEventListener('scroll', () => {
-        const navbar = document.getElementById('navbar');
-        if (window.scrollY > 50) {
-            navbar.classList.add('shrink');
-        } else {
-            navbar.classList.remove('shrink');
-        }
-    });
-    
-    
-    const filterButtons = document.querySelectorAll('.filter-btn');
-    const projectItems = document.querySelectorAll('.project-item');
-    
-    filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            filterButtons.forEach(btn => btn.classList.remove('active'));
-            
-            button.classList.add('active');
-            
-            const filterValue = button.getAttribute('data-filter');
-            
-            if (filterValue === 'all') {
-                gsap.to(projectItems, {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.4,
-                    stagger: 0.05,
-                    ease: "power2.out",
-                    display: 'block'
-                });
-            } else {
-                projectItems.forEach(item => {
-                    if (item.getAttribute('data-category') === filterValue) {
-                        gsap.to(item, {
-                            opacity: 1,
-                            scale: 1,
-                            duration: 0.4,
-                            ease: "power2.out",
-                            display: 'block'
-                        });
-                    } else {
-                        gsap.to(item, {
-                            opacity: 0,
-                            scale: 0.8,
-                            duration: 0.4,
-                            ease: "power2.out",
-                            display: 'none'
-                        });
-                    }
-                });
-            }
-        });
-    });
-    
-    const projectDetailsModal = document.getElementById('project-details');
-    const projectContent = document.getElementById('project-content');
-    const closeDetailsButton = document.getElementById('close-details');
-    const viewProjectButtons = document.querySelectorAll('.view-project');
-    
     const projectData = {
         project1: {
             title: "Bella iatlia Logo",
@@ -799,208 +526,109 @@
             images: ["/api/placeholder/1200/800", "/api/placeholder/1200/800", "/api/placeholder/1200/800"]
         }
     };
-    
-    viewProjectButtons.forEach(button => {
+
+    // imgix redimensiona e entrega WebP/AVIF automaticamente
+    function imgUrl(url, w) {
+        if (url.indexOf('imgix.net') === -1) return url;
+        return encodeURI(url).replace(/%25/g, '%') + '?auto=format,compress&fit=max&w=' + w;
+    }
+
+    // ------------------------------------------------------------ Filtro
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const projectItems = document.querySelectorAll('.project-item');
+    let filterTimer = 0;
+
+    filterButtons.forEach(button => {
         button.addEventListener('click', () => {
-            const projectId = button.getAttribute('data-project');
-            const project = projectData[projectId];
-            
-            if (project) {
-                let content = `
-                    <div class="max-w-4xl mx-auto">
-                        <h2 class="text-3xl md:text-4xl font-bold mb-2">${project.title}</h2>
-                        
-                        <div class="flex flex-wrap gap-4 mb-6">
-                            <div class="flex items-center">
-                                <i class="fas fa-user mr-2 text-indigo-300"></i>
-                                <span>${project.client}</span>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-calendar mr-2 text-indigo-300"></i>
-                                <span>${project.year}</span>
-                            </div>
+            filterButtons.forEach(btn => {
+                btn.classList.toggle('active', btn === button);
+                btn.setAttribute('aria-pressed', btn === button ? 'true' : 'false');
+            });
+
+            const filterValue = button.getAttribute('data-filter');
+            const show = item => filterValue === 'all' || item.getAttribute('data-category') === filterValue;
+
+            // 1) some com fade  2) sai do layout  3) os que ficam entram com fade
+            projectItems.forEach(item => { if (!show(item)) item.classList.add('is-hiding'); });
+            clearTimeout(filterTimer);
+            filterTimer = setTimeout(() => {
+                projectItems.forEach(item => {
+                    const visible = show(item);
+                    item.classList.toggle('is-hidden', !visible);
+                    if (visible) {
+                        item.classList.add('is-hiding', 'visible');
+                        requestAnimationFrame(() => requestAnimationFrame(() => item.classList.remove('is-hiding')));
+                    }
+                });
+            }, 250);
+        });
+    });
+
+    // ------------------------------------------------------------- Modal
+    const projectDetailsModal = document.getElementById('project-details');
+    const projectContent = document.getElementById('project-content');
+    const closeDetailsButton = document.getElementById('close-details');
+    let lastTrigger = null;
+
+    function openProject(project) {
+        projectContent.innerHTML = `
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-2">${project.title}</h2>
+                <div class="flex flex-wrap gap-4 mb-6 text-indigo-100">
+                    ${project.client ? `<div class="flex items-center"><i class="fas fa-user mr-2 text-indigo-300"></i><span>${project.client}</span></div>` : ''}
+                    <div class="flex items-center"><i class="fas fa-calendar mr-2 text-indigo-300"></i><span>${project.year}</span></div>
+                </div>
+                <div class="mb-12">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="leading-relaxed text-gray-200">
+                            <h3 class="text-xl font-semibold mb-4 text-indigo-300">Sobre o Projeto</h3>
+                            <p class="mb-6">${project.description}</p>
+                            <h3 class="text-xl font-semibold mb-4 text-indigo-300">Desafio</h3>
+                            <p class="mb-6">${project.challenge}</p>
+                            <h3 class="text-xl font-semibold mb-4 text-indigo-300">Solução</h3>
+                            <p>${project.solution}</p>
                         </div>
-                        
-                        <div class="mb-12">
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                <div>
-                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Sobre o Projeto</h3>
-                                    <p class="mb-6">${project.description}</p>
-                                    
-                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Desafio</h3>
-                                    <p class="mb-6">${project.challenge}</p>
-                                    
-                                    <h3 class="text-xl font-semibold mb-4 text-indigo-300">Solução</h3>
-                                    <p>${project.solution}</p>
-                                </div>
-                                
-                                <div>
-                                    <div class="rounded-lg overflow-hidden mb-6">
-                                        <img src="${project.images[0]}" alt="${project.title}" class="w-full">
-                                    </div>
-                                </div>
+                        <div>
+                            <div class="rounded-2xl overflow-hidden mb-6 gallery-image">
+                                <img src="${imgUrl(project.images[0], 1000)}" alt="${project.title}" class="w-full" decoding="async">
                             </div>
-                        </div>
-                        
-                        <h3 class="text-2xl font-semibold mb-6 text-center">Galeria do Projeto</h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            ${project.images.map(image => `
-                                <div class="rounded-lg overflow-hidden gallery-image">
-                                    <img src="${image}" alt="${project.title}" class="w-full">
-                                </div>
-                            `).join('')}
                         </div>
                     </div>
-                `;
-                
-                projectContent.innerHTML = content;
-                projectDetailsModal.classList.add('active');
-                
-                gsap.fromTo(projectContent, {
-                    opacity: 0,
-                    y: 50
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.6,
-                    ease: "power2.out"
-                });
-                
-                gsap.utils.toArray('.gallery-image').forEach((image, i) => {
-                    gsap.fromTo(image, {
-                        opacity: 0,
-                        y: 30
-                    }, {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.6,
-                        delay: 0.3 + (i * 0.1),
-                        ease: "power2.out"
-                    });
-                });
-                
-                document.body.style.overflow = 'hidden';
-            }
-        });
-    });
-    
-    closeDetailsButton.addEventListener('click', () => {
-        gsap.to(projectContent, {
-            opacity: 0,
-            y: 30,
-            duration: 0.4,
-            ease: "power2.in",
-            onComplete: () => {
-                projectDetailsModal.classList.remove('active');
-                document.body.style.overflow = 'auto';
-            }
-        });
-    });
-    
-    function initAnimations() {
-        gsap.from('.page-header h1', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            ease: "power2.out"
-        });
-        
-        gsap.from('.page-header p', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            delay: 0.2,
-            ease: "power2.out"
-        });
-        
-    
-        gsap.from('.filter-btn', {
-            opacity: 0,
-            y: 20,
-            duration: 0.6,
-            stagger: 0.1,
-            delay: 0.5,
-            ease: "power2.out"
-        });
-        
-        gsap.utils.toArray('.project-card').forEach((card, i) => {
-            gsap.fromTo(card, 
-                {
-                    opacity: 0,
-                    y: 50
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 0.8,
-                    delay: 0.1 * i,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: card,
-                        start: "top bottom-=100",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
-        
-        gsap.from('.py-20.bg-indigo-600 h2', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            scrollTrigger: {
-                trigger: '.py-20.bg-indigo-600',
-                start: "top bottom-=100",
-                toggleActions: "play none none none"
-            }
-        });
-        
-        gsap.from('.py-20.bg-indigo-600 p', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            delay: 0.2,
-            scrollTrigger: {
-                trigger: '.py-20.bg-indigo-600',
-                start: "top bottom-=100",
-                toggleActions: "play none none none"
-            }
-        });
-        
-        gsap.from('.py-20.bg-indigo-600 a', {
-            opacity: 0,
-            y: 30,
-            duration: 0.8,
-            delay: 0.4,
-            scrollTrigger: {
-                trigger: '.py-20.bg-indigo-600',
-                start: "top bottom-=100",
-                toggleActions: "play none none none"
-            }
-        });
-        
-        const galleryImages = document.querySelectorAll('.gallery-image');
-        galleryImages.forEach(image => {
-            gsap.fromTo(image, 
-                { 
-                    opacity: 0,
-                    scale: 0.9
-                },
-                {
-                    opacity: 1,
-                    scale: 1,
-                    duration: 0.8,
-                    ease: "power2.out",
-                    scrollTrigger: {
-                        trigger: image,
-                        start: "top bottom-=100",
-                        toggleActions: "play none none none"
-                    }
-                }
-            );
-        });
+                </div>
+                ${project.images.length > 1 ? `
+                <h3 class="text-2xl font-semibold mb-6 text-center">Galeria do Projeto</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    ${project.images.map((image, i) => `
+                        <div class="rounded-2xl overflow-hidden gallery-image" style="animation-delay: ${0.15 + i * 0.08}s">
+                            <img src="${imgUrl(image, 900)}" alt="${project.title}" class="w-full" loading="lazy" decoding="async">
+                        </div>
+                    `).join('')}
+                </div>` : ''}
+            </div>
+        `;
+        projectDetailsModal.scrollTop = 0;
+        projectDetailsModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        closeDetailsButton.focus({ preventScroll: true });
     }
+
+    function closeProject() {
+        if (!projectDetailsModal.classList.contains('active')) return;
+        projectDetailsModal.classList.remove('active');
+        document.body.style.overflow = '';
+        if (lastTrigger) lastTrigger.focus({ preventScroll: true });
+    }
+
+    document.querySelectorAll('.view-project').forEach(button => {
+        button.addEventListener('click', () => {
+            const project = projectData[button.getAttribute('data-project')];
+            if (!project) return;
+            lastTrigger = button;
+            openProject(project);
+        });
+    });
+    closeDetailsButton.addEventListener('click', closeProject);
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeProject(); });
 </script>
 </body>
 </html>
