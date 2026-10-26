@@ -3,191 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sobre Mim | Designer Criativo</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    <title>Sobre Mim | Edilson Mendes</title>
+    <meta name="description" content="Conheça a história e a trajetória do designer gráfico Edilson Mendes.">
+    <meta name="theme-color" content="#4f46e5">
+    <script>document.documentElement.className += ' js';</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://englishhub897785602.imgix.net">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet">
+    <!-- Tailwind só com as classes usadas no site (gerado com PurgeCSS a partir do Tailwind 2.2.19) -->
+    <link href="../assets/css/tailwind.min.css" rel="stylesheet">
+    <link href="../assets/css/site.css" rel="stylesheet">
+    <!-- Ícones carregam sem bloquear a renderização -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"></noscript>
     <style>
-        :root {
-            --primary: #0f172a;
-            --secondary: #6366f1; 
-            --accent: #8b5cf6;   
-            --light: #f8fafc;
-            --dark: #1e293b;
-            --blue-light: #eff6ff; 
-            --blue-medium: #3b82f6; 
-            --blue-dark: #1e40af;   
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: var(--accent);
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::after,
-        .nav-link.active::after { /* Style for active link */
-            width: 100%;
-        }
-
-        #navbar {
-            transition: all 0.3s ease;
-        }
-
-        .shrink {
-            padding-top: 0.5rem !important;
-            padding-bottom: 0.5rem !important;
-            background-color: rgba(255, 255, 255, 0.95) !important;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: var(--light);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-
-        .loader-hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .loader-icon {
-            width: 50px;
-            height: 50px;
-            border: 3px solid #e2e8f0;
-            border-top-color: var(--accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .page-header {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, var(--blue-light) 0%, #ffffff 100%);
-        }
-
-        .page-header::before {
-            content: '';
-            position: absolute;
-            bottom: -30%;
-            left: -20%;
-            width: 80%;
-            height: 80%;
-            background-color: rgba(59, 130, 246, 0.08); 
-            border-radius: 50%;
-            filter: blur(60px);
-            z-index: 0;
-            opacity: 0.6;
-            animation: pulse-bubble 15s infinite alternate ease-in-out;
-        }
-         .page-header::after {
-            content: '';
-            position: absolute;
-            top: -30%;
-            right: -20%;
-            width: 70%;
-            height: 70%;
-            background-color: rgba(139, 92, 246, 0.06); 
-            border-radius: 50%;
-             filter: blur(50px);
-            z-index: 0;
-            opacity: 0.5;
-            animation: pulse-bubble 12s infinite alternate-reverse ease-in-out;
-        }
-
-        @keyframes pulse-bubble {
-            0% { transform: scale(1); opacity: 0.5; }
-            100% { transform: scale(1.1); opacity: 0.7; }
-        }
-
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .animate-on-scroll.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
         .gallery-item {
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
             overflow: hidden;
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--shadow-md);
+            transition: transform .45s var(--ease-out);
         }
-        .gallery-item:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.2);
+        .gallery-item img { transition: transform .7s var(--ease-out); }
+        @media (hover: hover) {
+            .gallery-item:hover { transform: translate3d(0, -6px, 0); }
+            .gallery-item:hover img { transform: scale(1.05); }
         }
     </style>
 </head>
-<body class="antialiased">
-  
-    <div class="loader">
-        <div class="loader-icon"></div>
-    </div>
+<body>
+
 
    
-    <nav id="navbar" class="fixed w-full bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg py-4 z-50 transition-all duration-300">
+    <div class="scroll-progress" aria-hidden="true"></div>
+
+    <nav id="navbar" class="fixed w-full py-4 z-50">
         <div class="container mx-auto px-6 flex justify-between items-center">
-            <a href="../index.html" class="text-2xl font-bold text-blue-600"> <!-- Blue theme -->
-                <span class="text-blue-700">Edilson</span> Mendes<span class="text-blue-700">.</span>
+            <a href="../index.html" class="brand-logo text-2xl">
+                <span class="text-gradient">Edilson</span> Mendes<span class="dot">.</span>
             </a>
             <div class="hidden md:flex space-x-8">
-                <a href="../index.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Início</a>
-                <a href="projetos.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Projetos</a>
-                <a href="sobre.html" class="nav-link text-blue-600 hover:text-blue-600 font-medium active">Sobre</a> <!-- Active class added -->
-                <a href="contato.html" class="nav-link text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+                <a href="../index.html" class="nav-link">Início</a>
+                <a href="projetos.html" class="nav-link">Projetos</a>
+                <a href="sobre.html" class="nav-link active" aria-current="page">Sobre</a>
+                <a href="contato.html" class="nav-link">Contato</a>
             </div>
             <div class="md:hidden">
-                <button id="menu-toggle" class="text-gray-800 focus:outline-none">
-                    <i class="fas fa-bars text-2xl"></i>
+                <button id="menu-toggle" class="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <svg class="i-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+                    <svg class="i-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
                 </button>
             </div>
         </div>
-      
-        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-4 px-6 shadow-lg">
-            <div class="flex flex-col space-y-4">
-                <a href="../index.html" class="text-gray-800 hover:text-blue-600 font-medium">Início</a>
-                <a href="projetos.html" class="text-gray-800 hover:text-blue-600 font-medium">Projetos</a>
-                <a href="sobre.html" class="text-blue-600 hover:text-blue-600 font-medium">Sobre</a>
-                <a href="contato.html" class="text-gray-800 hover:text-blue-600 font-medium">Contato</a>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white absolute w-full left-0 py-3 px-6 shadow-lg">
+            <div class="flex flex-col">
+                <a href="../index.html">Início</a>
+                <a href="projetos.html">Projetos</a>
+                <a href="sobre.html" class="active" aria-current="page">Sobre</a>
+                <a href="contato.html">Contato</a>
             </div>
         </div>
     </nav>
@@ -195,7 +70,7 @@
     <header class="page-header py-32 md:py-40 relative">
         <div class="container mx-auto px-6 relative z-10">
             <div class="max-w-3xl mx-auto text-center">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-blue-900 animate-on-scroll">Sobre Mim</h1>
+                <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 animate-on-scroll">Sobre <span class="text-gradient">Mim</span></h1>
                 <p class="text-lg md:text-xl text-gray-700 mb-8 animate-on-scroll" style="transition-delay: 0.2s;">
                     Conheça um pouco mais sobre minha jornada, paixões e o que me motiva a criar.
                 </p>
@@ -207,8 +82,9 @@
         <div class="container mx-auto px-6">
             <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
                 <div class="lg:w-1/2 order-2 lg:order-1 animate-on-scroll" style="transition-delay: 0.4s;">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-blue-800">Minha História Criativa</h2>
-                     <div class="w-20 h-1 bg-blue-500 rounded mb-6"></div>
+                    <span class="section-eyebrow mb-4">Minha jornada</span>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4">Minha História Criativa</h2>
+                    <div class="title-bar mb-6"></div>
                     <p class="text-gray-600 mb-6 leading-relaxed">
                         Desde cedo, fui fascinado pela forma como as cores, formas e imagens podem contar histórias e evocar emoções. Essa paixão me levou a explorar o mundo do design gráfico, onde encontrei minha vocação: transformar ideias em soluções visuais impactantes e funcionais.
                     </p>
@@ -218,16 +94,13 @@
                      <p class="text-gray-600 mb-6 leading-relaxed font-medium text-blue-700">
                        Meu objetivo é ir além do estético, criando designs que resolvam problemas, comuniquem de forma eficaz e proporcionem experiências memoráveis para o usuário final.
                     </p>
-                    <a href="contato.html" class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition duration-300 transform hover:-translate-y-1 shadow-lg hover:shadow-xl">
+                    <a href="contato.html" class="btn btn-primary">
                        Vamos conversar sobre seu projeto!
                     </a>
                 </div>
-
-                <
                 <div class="lg:w-1/2 order-1 lg:order-2 flex justify-center animate-on-scroll" style="transition-delay: 0.6s;">
-                    <div class="relative w-80 h-80 md:w-96 md:h-96">
-                        <div class="absolute inset-0 bg-gradient-to-br from-blue-200 to-purple-200 rounded-full transform rotate-6 skew-x-3 opacity-70 blur-xl"></div>
-                        <img src="https://englishhub897785602.imgix.net/edilson/Perfil.jpeg" alt="Edilson Mendes" class="relative w-full h-full object-cover rounded-full shadow-2xl p-2 bg-white" loading="lazy">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                                                <div class="avatar-ring w-full h-full"><img src="https://englishhub897785602.imgix.net/edilson/Perfil.jpeg?auto=format,compress&amp;fit=crop&amp;crop=faces&amp;w=640&amp;h=640" alt="Edilson Mendes" class="w-full h-full object-cover" width="384" height="384" loading="lazy" decoding="async"></div>
                     </div>
                 </div>
             </div>
@@ -235,29 +108,29 @@
     </section>
 
     
-    <section class="py-20 bg-blue-50"> 
+    <section class="py-20" style="background: #f3f4ff;"> 
         <div class="container mx-auto px-6">
-            <h2 class="text-3xl md:text-4xl font-bold mb-2 text-center text-blue-900 animate-on-scroll">Momentos e Inspirações</h2>
-            <div class="w-20 h-1 bg-blue-500 rounded mb-12 mx-auto animate-on-scroll"></div>
+            <h2 class="text-3xl md:text-4xl font-bold mb-3 text-center animate-on-scroll">Momentos e Inspirações</h2>
+            <div class="title-bar mb-12 mx-auto animate-on-scroll"></div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <div class="gallery-item rounded-lg shadow-lg animate-on-scroll" style="transition-delay: 0.2s;">
-                    <img src="https://englishhub897785602.imgix.net/edilson/gallery1.jpg" alt="Espaço de Trabalho" class="w-full h-64 object-cover rounded-lg" loading="lazy">
-                     <div class="p-4 bg-white rounded-b-lg">
+                <div class="gallery-item animate-on-scroll" style="transition-delay: 0.2s;">
+                    <img src="https://englishhub897785602.imgix.net/edilson/gallery1.jpg?auto=format,compress&amp;fit=max&amp;w=800" alt="Espaço de Trabalho" class="w-full h-64 object-cover" loading="lazy" decoding="async">
+                     <div class="p-5 bg-white relative">
                         <p class="text-sm text-gray-600">Meu espaço criativo, onde as ideias ganham forma.</p>
                     </div>
                 </div>
               
-                 <div class="gallery-item rounded-lg shadow-lg animate-on-scroll" style="transition-delay: 0.4s;">
-                    <img src="https://englishhub897785602.imgix.net/edilson/gallery2.jpg" alt="Detalhe Projeto" class="w-full h-64 object-cover rounded-lg" loading="lazy">
-                     <div class="p-4 bg-white rounded-b-lg">
+                 <div class="gallery-item animate-on-scroll" style="transition-delay: 0.4s;">
+                    <img src="https://englishhub897785602.imgix.net/edilson/gallery2.jpg?auto=format,compress&amp;fit=max&amp;w=800" alt="Detalhe Projeto" class="w-full h-64 object-cover" loading="lazy" decoding="async">
+                     <div class="p-5 bg-white relative">
                         <p class="text-sm text-gray-600">Atenção aos detalhes em cada projeto.</p>
                     </div>
                 </div>
-                 <div class="gallery-item rounded-lg shadow-lg animate-on-scroll" style="transition-delay: 0.6s;">
-                    <img src="https://englishhub897785602.imgix.net/edilson/gallery3.jpg" alt="Inspiração Natureza" class="w-full h-64 object-cover rounded-lg" loading="lazy">
-                    <div class="p-4 bg-white rounded-b-lg">
+                 <div class="gallery-item animate-on-scroll" style="transition-delay: 0.6s;">
+                    <img src="https://englishhub897785602.imgix.net/edilson/gallery3.jpg?auto=format,compress&amp;fit=max&amp;w=800" alt="Inspiração Natureza" class="w-full h-64 object-cover" loading="lazy" decoding="async">
+                    <div class="p-5 bg-white relative">
                         <p class="text-sm text-gray-600">Buscando inspiração no mundo ao redor.</p>
                     </div>
                 </div>
@@ -307,78 +180,6 @@
         </div>
     </footer>
 
-    <script>
-        
-        window.addEventListener('load', () => {
-            const loader = document.querySelector('.loader');
-            setTimeout(() => {
-                loader.classList.add('loader-hidden');
-                initAnimations();
-            }, 500);
-        });
-
-        document.getElementById('menu-toggle').addEventListener('click', () => {
-            document.getElementById('mobile-menu').classList.toggle('hidden');
-        });
-
-        // Navbar Shrink on Scroll
-        window.addEventListener('scroll', () => {
-            const navbar = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                navbar.classList.add('shrink');
-            } else {
-                navbar.classList.remove('shrink');
-            }
-        });
-
-        function initAnimations() {
-             if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
-                console.warn('GSAP or ScrollTrigger not loaded yet.');
-               
-                 // setTimeout(initAnimations, 100);
-                return;
-            }
-
-            gsap.registerPlugin(ScrollTrigger);
-
-            gsap.utils.toArray('.animate-on-scroll').forEach((element) => {
-                let delay = parseFloat(element.style.transitionDelay) || 0;
-                gsap.fromTo(element,
-                    {
-                        opacity: 0,
-                        y: 50
-                    },
-                    {
-                        opacity: 1,
-                        y: 0,
-                        duration: 0.8,
-                        delay: delay, 
-                        ease: "power2.out",
-                        scrollTrigger: {
-                            trigger: element,
-                            start: "top bottom-=100",
-                            toggleActions: "play none none none",
-                            once: true 
-                        }
-                    }
-                );
-             });
-        }
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                     // Optionally unobserve after first intersection if CSS animation is enough
-                     // observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-         document.querySelectorAll('.animate-on-scroll').forEach(element => {
-            observer.observe(element);
-        });
-
-    </script>
+    <script src="../assets/js/site.js" defer></script>
 </body>
 </html>
